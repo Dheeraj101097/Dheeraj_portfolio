@@ -3,7 +3,8 @@ import { useTheme } from "../context/ThemeContext";
 import { AiOutlineLike } from "react-icons/ai";
 import Like from "./Like";
 // import profile from "../assets/Display_pic.jpg";
-import profile from "../assets/vizagdp.jpg";
+// import profile from "../assets/vizagdp.jpg";
+import profile from "../assets/dppng.png";
 
 const LeftComponent = () => {
   const theme = useTheme();
