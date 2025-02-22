@@ -9,6 +9,7 @@ import Contact from "./pages/Contact";
 import Education from "./pages/Education";
 import Certificate from "./pages/Certificate";
 import Experience from "./pages/Experience";
+import { Analytics } from "@vercel/analytics/react";
 
 function App() {
   const [count, setCount] = useState(0);
@@ -30,6 +31,7 @@ function App() {
           </Layout>
         </ThemeProvider>
       </BrowserRouter>
+      <Analytics />
     </>
   );
 }
