@@ -18,7 +18,7 @@ const Certificate = () => {
             <div
               className={`relative flex w-[17rem] flex-col rounded-2xl ${theme.bg} border-2 ${theme.border} ${theme.text} bg-clip-border shadow-md mt-1`}
             >
-              <div className="relative mx-4 -mt-6 h-40 overflow-hidden rounded-xl bg-blue-gray-500 bg-clip-border text-white shadow-lg shadow-blue-gray-500/40 bg-gradient-to-r from-fuchsia-300 to-fuchsia-600 hover:shadow-lg hover:shadow-fuchsia-400">
+              <div className="relative mx-4 -mt-6 h-40 overflow-hidden rounded-xl bg-blue-gray-500 bg-clip-border text-white shadow-lg shadow-blue-gray-500/40 bg-gradient-to-r from-amber-200 to-amber-300 hover:shadow-lg hover:shadow-amber-400">
                 <img src={certificate5} className="p-3 rounded-md" />
               </div>
               <div className="p-6">
@@ -115,7 +115,7 @@ const Certificate = () => {
             <div
               className={`relative w-[17rem] flex  flex-col rounded-2xl ${theme.bg} border-2 ${theme.border} ${theme.text} bg-clip-border shadow-md mt-1`}
             >
-              <div className="relative mx-4 -mt-6 h-40 overflow-hidden rounded-xl bg-blue-gray-500 bg-clip-border text-white shadow-lg shadow-blue-gray-500/40 bg-gradient-to-r from-amber-100 to-amber-200 hover:shadow-lg hover:shadow-amber-300">
+              <div className="relative mx-4 -mt-6 h-40 overflow-hidden rounded-xl bg-blue-gray-500 bg-clip-border text-white shadow-lg shadow-blue-gray-500/40 bg-gradient-to-r from-red-100 to-red-200 hover:shadow-lg hover:shadow-red-300">
                 <img src={certificate3} className="p-3 rounded-md" />
               </div>
               <div className="p-6">
