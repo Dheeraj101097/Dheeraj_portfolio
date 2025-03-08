@@ -25,7 +25,7 @@ const Card = () => {
       ],
       image2: recipe,
       githubLink: "https://github.com/Dheeraj101097/khanabanao.git",
-      livelink: "https://khanabanaofrontendrrecipeapp.onrender.com",
+      livelink: "https://foodzone-woad.vercel.app",
     },
     {
       title: "Grain Length Detection System",
