@@ -5,6 +5,7 @@ import certificate1 from "../assets/certificate_1.png";
 import certificate2 from "../assets/certificate_2.png";
 import certificate3 from "../assets/certificate_3.png";
 import certificate4 from "../assets/certificate_4.png";
+import certificate5 from "../assets/certificate_5.jpg";
 
 const Certificate = () => {
   const theme = useTheme();
@@ -14,6 +15,30 @@ const Certificate = () => {
         <div className="flex flex-col md:flex-row items-start gap-8 ">
           <LeftComponent />
           <div className="grid lg:grid-cols-2 md:grid-cols-1 sm:grid-cols-1 gap-10 mx-4 mt-8 ">
+            <div
+              className={`relative flex w-[17rem] flex-col rounded-2xl ${theme.bg} border-2 ${theme.border} ${theme.text} bg-clip-border shadow-md mt-1`}
+            >
+              <div className="relative mx-4 -mt-6 h-40 overflow-hidden rounded-xl bg-blue-gray-500 bg-clip-border text-white shadow-lg shadow-blue-gray-500/40 bg-gradient-to-r from-fuchsia-300 to-fuchsia-600 hover:shadow-lg hover:shadow-fuchsia-400">
+                <img src={certificate5} className="p-3 rounded-md" />
+              </div>
+              <div className="p-6">
+                <h5 className="mb-2 block font-sans text-xl font-semibold leading-snug tracking-normal text-blue-gray-900 antialiased">
+                  Vertex Innovate(2025)
+                </h5>
+                <p className="block font-sans text-base font-light leading-relaxed text-inherit antialiased">
+                  Issued by: VIT Vellore
+                  <br></br> Date: February 20, 2025
+                  <br></br>
+                  <a
+                    className="text-blue-300 hover:text-blue-500 font-medium "
+                    href="https://drive.google.com/file/d/1sd70ZI4cyFalHfcDYdUly0XYAmrCA1Io/view?usp=sharing"
+                  >
+                    View Certificate
+                  </a>
+                </p>
+              </div>
+            </div>
+            {/*  */}
             <div
               className={`relative flex w-[17rem] flex-col rounded-2xl ${theme.bg} border-2 ${theme.border} ${theme.text} bg-clip-border shadow-md mt-1`}
             >
