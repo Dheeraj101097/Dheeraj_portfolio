@@ -1,4 +1,4 @@
-import Card from "../components/Card";
+import ProjectCard from "../components/ProjectCard";
 import LeftComponent from "../components/LeftComponent";
 import { useTheme } from "../context/ThemeContext";
 
@@ -14,7 +14,7 @@ export default function Projects() {
             <div className="flex justify-between items-center mb-2">
               <h2 className={`text-2xl font-bold ${theme.text}`}>Projects</h2>
             </div>
-            <Card />
+            <ProjectCard />
           </div>
         </div>
       </div>

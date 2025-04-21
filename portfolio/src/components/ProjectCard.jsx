@@ -6,21 +6,22 @@ import speeddetector from "../assets/projects/speeddetection.png";
 import ricegrain from "../assets/projects/riceproject.jpg";
 import smartAgri from "../assets/projects/smart farmimg.jpg";
 import portfolio from "../assets/projects/portfolio.png";
-import Star from "../components/Star";
+import flood from "../assets/projects/flood.png";
+import Star from "./Star";
 import recipe from "../assets/projects/img2.png";
 import pwm from "../assets/projects/final min.png";
-const Card = () => {
+const ProjectCard = () => {
   const theme = useTheme();
   const projectsData = [
     {
-      title: "Recipe App (AI)",
+      title: "FoodZone - AI Recipe App",
       description1:
         " A recipe search application with authentication, API integration and AI model for better queries. Using MongoDB, Express.js, React.js, Node.js, API’s, GoogleAI Studio(Gemini API).",
       description2: [
         "A full-stack recipe management app with React Router for seamless navigation between recipe search, user submissions, and detailed views.",
         "Includes secure user authentication for login and registration.",
-        "Leveraged Gemini API through Google Ai Studio to enable advanced recipe-related queries, providing comprehensive insights into food, such as ingredient substitutions, and preparation techniques.",
-        "Allowing users to add, edit, and delete their own recipes in the database, supporting full CRUD operations.",
+        " Leveraged Google AI for advanced recipe queries, reducing response time by 3 seconds and enhancing accuracy for seamless user experience.",
+        "Empowering 150+ users to add, edit, and delete their own recipes in the database, supporting full CRUD operations.",
         "Focused on responsive design and optimized performance, ensuring a smooth user experience.",
       ],
       image2: recipe,
@@ -28,72 +29,20 @@ const Card = () => {
       livelink: "https://foodzone-woad.vercel.app",
     },
     {
-      title: "Grain Length Detection System",
+      title: "Flood Monitoring System",
       description1:
-        "System developed to measure Rice Grains Length using Image Processing Technique ( Python, PyQt5, OpenCV, Matplotlib ) ",
-      image2: ricegrain,
-      githubLink: "https://github.com/Dheeraj101097/ricelengthdetector.git",
-      livelink:
-        "https://drive.google.com/drive/folders/1aZa6BWk8eDlApqMY4yu14JApUwtXa6Xh",
+        "FloodSense is a patented IoT-based system using Jetson Nano for edge processing. It monitors underpasses in real-time, detects floods & potholes, sends alerts via Firebase, providing alternate route suggestions using MapBox API to enhance commuter safety.",
       description2: [
-        "Designed and developed a Python-based desktop application to analyze rice grain lengths and distinguish full-length grains from broken ones.",
-        "Implemented image processing techniques with OpenCV like thresholding, edge detection, and contour analysis to calculate grain dimensions with high precision.",
-        "Built an intuitive GUI, allowing users to upload images, view detailed statistical reports of categorized grains.",
-        "Achieved over 96% accuracy in measuring grain lengths and differentiating full-length grains from broken ones, ensuring reliable quality assessment for diverse rice varieties",
+        " Developed a patented IoT system leveraging Jetson Nano for edge processing, achieving 85% faster response times compared to traditional systems.",
+        "• Integrated sensors for clog detection and real-time data transmission to Firebase, enabling 24/7 remote monitoring.",
+        "Designed an intuitive admin dashboard for managing multiple underpasses, featuring real-time flood monitoring, pothole detection, and integrated access to government services.",
+        "Delivered real-time flood alerts & alternate route suggestions via MapBox API, enhancing commuter safety by 97%",
       ],
+      image2: flood,
+      githubLink:
+        "https://github.com/Dheeraj101097/flood-monitoring-system.git",
+      livelink: "https://flood-monitoring-system.vercel.app/",
     },
-    {
-      title: "Speed Detection System",
-      description1:
-        "An IoT-based project to measure and display speed using IR sensors in website with realtime data using  Esp32, Arduino(C++), JavaScript.",
-      image2: speeddetector,
-      githubLink: "https://github.com/Dheeraj101097/speed_detction_system.git",
-      description2: [
-        "Designed a speed detection system for traffic management applications capable of measuring the velocity of moving objects using IR sensors and ESP32.",
-        "Implemented an API endpoint to upload sensor data via POST requests, ensuring seamless data transmission.",
-        "Streamlined data flow between hardware and web interface, demonstrating efficient communication between IoT devices and backend systems.",
-      ],
-    },
-    {
-      title: "Portfolio Website",
-      description1:
-        "My personal portfolio website showcasing my skills and projects. Using React.Js and various UI components.",
-      image2: portfolio,
-      githubLink: "https://github.com/Dheeraj101097/portfolio_Dheeraj.git",
-      livelink: "https://github.com/Dheeraj101097/",
-      description2: [
-        "My personal portfolio website designed to showcase my projects, skills, and professional journey using React.Js and Tailwind CSS.",
-        "Featuring dark and light mode toggle for enhanced user customization.",
-        "Used interactive and animated components to engage users and highlight project and skills sections.",
-        "Ensured a seamless user experience across multiple devices using modern web technologies.",
-      ],
-    },
-    // {
-    //   title: "Weather App",
-    //   description1:
-    //     "A weather forecasting app with a user-friendly UI and real-time data.",
-    //   image: weather,
-    //   description2: [
-    //     "Designed a weather application that fetches real-time weather data from an API and displays it to users.",
-    //     "Implemented features to search for weather conditions by city, providing current temperature, humidity, and weather conditions.",
-    //     "Gained experience in API integration, data handling, and asynchronous JavaScript.",
-    //   ],
-    // },
-    // {
-    //   title: "Employee Management Dashboard",
-    //   description1:
-    //     "An IoT-based project to measure and display speed using IR sensors.",
-    //   image: employeeDashboard,
-    //   description2: [
-    //     "Developed a full-stack dynamic employee management dashboard web application (MERN) stack.",
-    //     "Implemented features like searching, sorting, pagination, and toggle functionality to activate/deactivate employees.",
-    //     "Integrated user authentication for secure login and registration.",
-    //     "Fetched and displayed real employee data from database(MongoDB), with various functions and update the UI in real-time.",
-    //   ],
-    // },
-  ];
-
-  const coreProjects = [
     {
       title: "Smart Agriculture System",
       description1:
@@ -112,6 +61,48 @@ const Card = () => {
       ],
     },
     {
+      title: "Grain Length Detection System",
+      description1:
+        "System developed to measure Rice Grains Length using Image Processing Technique ( Python, PyQt5, OpenCV, Matplotlib ) ",
+      image2: ricegrain,
+      githubLink: "https://github.com/Dheeraj101097/ricelengthdetector.git",
+      livelink:
+        "https://drive.google.com/drive/folders/1aZa6BWk8eDlApqMY4yu14JApUwtXa6Xh",
+      description2: [
+        "Designed and developed a Python-based desktop application to analyze rice grain lengths and distinguish full-length grains from broken ones.",
+        "Implemented image processing techniques with OpenCV like thresholding, edge detection, and contour analysis to calculate grain dimensions with high precision.",
+        "Built an intuitive GUI, allowing users to upload images, view detailed statistical reports of categorized grains.",
+        "Achieved over 96% accuracy in measuring grain lengths and differentiating full-length grains from broken ones, ensuring reliable quality assessment for diverse rice varieties",
+      ],
+    },
+
+    {
+      title: "Portfolio Website",
+      description1:
+        "My personal portfolio website showcasing my skills and projects. Using React.Js and various UI components.",
+      image2: portfolio,
+      githubLink: "https://github.com/Dheeraj101097/portfolio_Dheeraj.git",
+      livelink: "https://github.com/Dheeraj101097/",
+      description2: [
+        "My personal portfolio website designed to showcase my projects, skills, and professional journey using React.Js and Tailwind CSS.",
+        "Featuring dark and light mode toggle for enhanced user customization.",
+        "Used interactive and animated components to engage users and highlight project and skills sections.",
+        "Ensured a seamless user experience across multiple devices using modern web technologies.",
+      ],
+    },
+    {
+      title: "Speed Detection System",
+      description1:
+        "An IoT-based project to measure and display speed using IR sensors in website with realtime data using  Esp32, Arduino(C++).",
+      image2: speeddetector,
+      githubLink: "https://github.com/Dheeraj101097/speed_detction_system.git",
+      description2: [
+        "Designed a speed detection system for traffic management applications capable of measuring the velocity of moving objects using IR sensors and ESP32.",
+        "Implemented an API endpoint to upload sensor data via POST requests, ensuring seamless data transmission.",
+        "Streamlined data flow between hardware and web interface, demonstrating efficient communication between IoT devices and backend systems.",
+      ],
+    },
+    {
       title: "Arduino Projects (PWM,ADC)",
       description1:
         "Microcontoller project designed in Proteus software, it controls the speed of motor based on the input from temperature sensor.",
@@ -125,6 +116,8 @@ const Card = () => {
       ],
     },
   ];
+
+  const coreProjects = [];
 
   const [isOpenModel, setIsOpenModel] = useState(false);
   const [selectedModel, setSelectedModel] = useState(null);
@@ -163,33 +156,7 @@ const Card = () => {
           </div>
         ))}
       </div>
-      {/* core iot */}
-      <div className="p-1 mb-2">
-        <h2 className={`text-2xl font-bold  mb-3 ${theme.text}`}>
-          Core Projects (ECE)
-        </h2>
 
-        {coreProjects.map((project, i) => (
-          <div
-            key={i}
-            className={` ${theme.border} ${theme.bg} border-b-2  ${theme.text}  rounded-md p-4 shadow-md hover:shadow-xl hover:shadow-[#98f6ff80] mb-3 `}
-          >
-            <div className="flex  justify-between items-start ">
-              <button
-                className=" text-[#4684ff] font-medium  rounded-md transition hover:underline 
-                 underline-offset-2"
-                onClick={() => {
-                  openModel(project);
-                }}
-              >
-                <h3 className="text-lg font-medium mb-2">{project.title}</h3>
-              </button>
-              <Star />
-            </div>
-            <p className="text-sm text-gray-500 mb-4">{project.description1}</p>
-          </div>
-        ))}
-      </div>
       {/* m0del */}
       {isOpenModel && (
         <div
@@ -263,4 +230,4 @@ const Card = () => {
   );
 };
 
-export default Card;
+export default ProjectCard;
