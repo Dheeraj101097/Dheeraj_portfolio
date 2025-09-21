@@ -1,38 +1,70 @@
-import { useState } from "react";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { ThemeProvider } from "./context/ThemeContext";
-import Layout from "./components/Layout";
-import Overview from "./pages/Overview";
-import Projects from "./pages/Projects";
-import Skills from "./pages/Skills";
-import Contact from "./pages/Contact";
-import Education from "./pages/Education";
-import Certificate from "./pages/Certificate";
-import Experience from "./pages/Experience";
-import { Analytics } from "@vercel/analytics/react";
+import React, { useState, useEffect } from "react";
+import { motion } from "framer-motion";
+import Header from "./components/Header";
+import Hero from "./components/Hero";
+import Education from "./components/Education";
+import Skills from "./components/Skills";
+import Projects from "./components/Projects";
+import Experience from "./components/Experience";
+import Contact from "./components/Contact";
+import Footer from "./components/Footer";
+import Certificate from "./components/Certificate";
 
 function App() {
-  const [count, setCount] = useState(0);
+  const [darkMode, setDarkMode] = useState(true);
+
+  useEffect(() => {
+    const savedMode = localStorage.getItem("darkMode");
+    if (savedMode) {
+      setDarkMode(JSON.parse(savedMode));
+    } else {
+      setDarkMode(window.matchMedia("(prefers-color-scheme: dark)").matches);
+    }
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem("darkMode", JSON.stringify(darkMode));
+    if (darkMode) {
+      document.documentElement.classList.add("dark");
+    } else {
+      document.documentElement.classList.remove("dark");
+    }
+  }, [darkMode]);
+
+  const toggleDarkMode = () => {
+    setDarkMode(!darkMode);
+  };
 
   return (
-    <>
-      <BrowserRouter>
-        <ThemeProvider>
-          <Layout>
-            <Routes>
-              <Route path="/" element={<Overview />} />
-              <Route path="/projects" element={<Projects />} />
-              <Route path="/skills" element={<Skills />} />
-              <Route path="/contact" element={<Contact />} />
-              <Route path="/education" element={<Education />} />
-              <Route path="/experience" element={<Experience />} />
-              <Route path="/certificates" element={<Certificate />} />
-            </Routes>
-          </Layout>
-        </ThemeProvider>
-      </BrowserRouter>
-      <Analytics />
-    </>
+    <div
+      className={`min-h-screen transition-colors duration-300 ${
+        darkMode ? "dark bg-gray-900 text-white" : "bg-gray-50 text-gray-900"
+      }`}
+    >
+      <Header darkMode={darkMode} toggleDarkMode={toggleDarkMode} />
+      <main className="overflow-x-hidden">
+        <Hero />
+        <div id="experience">
+          <Experience />
+        </div>
+        <div id="skills">
+          <Skills />
+        </div>
+        <div id="projects">
+          <Projects />
+        </div>
+        <div id="certificate">
+          <Certificate />
+        </div>
+        <div id="education">
+          <Education />
+        </div>
+        <div id="contact">
+          <Contact />
+        </div>
+      </main>
+      <Footer />
+    </div>
   );
 }
 
