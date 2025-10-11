@@ -10,12 +10,19 @@ import {
   Newspaper,
 } from "lucide-react";
 import { Paper } from "@mui/material";
+import img1 from "../assets/img1.jpg";
+import img2 from "../assets/img2.png";
+import img3 from "../assets/img3.jpeg";
+import img4 from "../assets/img4.jpg";
 const Hero = () => {
   const scrollToSection = (href) => {
     const element = document.querySelector(href);
     if (element) {
       element.scrollIntoView({ behavior: "smooth" });
     }
+  };
+  const scrollToWorkflow = () => {
+    document.getElementById("workflow").scrollIntoView({ behavior: "smooth" });
   };
 
   // Floating icons animation
@@ -123,7 +130,7 @@ const Hero = () => {
       </div>
 
       <div className="container mx-auto px-6 relative z-10">
-        <div className="max-w-4xl mx-auto text-center">
+        <div className="max-w-5xl mx-auto text-center">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
@@ -131,7 +138,7 @@ const Hero = () => {
             className="mb-8"
           >
             <motion.h1
-              className="text-5xl md:text-7xl font-medium mb-6 bg-gradient-to-r from-indigo-500 via-cyan-500 to-emerald-500 bg-clip-text text-transparent p-2"
+              className="text-5xl md:text-7xl font-medium mb-6 mt-16 bg-gradient-to-r from-indigo-500 via-cyan-500 to-emerald-500 bg-clip-text text-transparent p-2"
               animate={{
                 backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"],
               }}
@@ -288,6 +295,54 @@ const Hero = () => {
               />
             </motion.button> */}
           </motion.div>
+          <div className="w-full px-4 sm:px-6 lg:px-8 my-12">
+            <div className="bg-transparent rounded-3xl shadow-xl p-4 overflow-hidden relative max-w-5xl mx-auto">
+              {/* Image Track */}
+              <motion.div
+                className="flex gap-4"
+                animate={{ x: [`0%`, `-100%`] }}
+                transition={{
+                  duration: 16, // total cycle
+                  repeat: Infinity,
+                  ease: "linear",
+                }}
+              >
+                {[
+                  img1,
+                  img2,
+                  img3,
+                  img4,
+                  img1,
+                  img2,
+                  img3,
+                  img4,
+                  img1,
+                  img2,
+                  img3,
+                  img4,
+                  img1,
+                  img2,
+                  img3,
+                  img4,
+                ].map((src, idx) => (
+                  <img
+                    key={idx}
+                    src={src}
+                    alt={`Gallery ${idx}`}
+                    className="w-1/3 h-56 object-cover rounded-2xl flex-shrink-0"
+                  />
+                ))}
+              </motion.div>
+
+              {/* Optional navigation arrows */}
+              <button className="absolute left-4 top-1/2 -translate-y-1/2 bg-green-600 text-white rounded-full p-2 shadow-md hover:bg-green-700">
+                ‹
+              </button>
+              <button className="absolute right-4 top-1/2 -translate-y-1/2 bg-green-600 text-white rounded-full p-2 shadow-md hover:bg-green-700">
+                ›
+              </button>
+            </div>
+          </div>
         </div>
       </div>
     </section>
