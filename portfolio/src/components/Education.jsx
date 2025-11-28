@@ -68,7 +68,7 @@ const Education = () => {
         />
 
         {/* Floating Academic Icons */}
-        {[...Array(12)].map((_, i) => (
+        {/* {[...Array(12)].map((_, i) => (
           <motion.div
             key={i}
             className="absolute text-indigo-400/20"
@@ -96,7 +96,7 @@ const Education = () => {
               <Star className="w-4 h-4" />
             )}
           </motion.div>
-        ))}
+        ))} */}
       </div>
 
       <div className="container mx-auto px-6 relative z-10">

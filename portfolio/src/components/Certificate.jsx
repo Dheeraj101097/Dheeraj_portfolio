@@ -77,7 +77,7 @@ const Certificate = () => {
               />
 
               {/* Floating Particles */}
-              <div className="absolute inset-0 overflow-hidden rounded-2xl">
+              {/* <div className="absolute inset-0 overflow-hidden rounded-2xl">
                 {[...Array(6)].map((_, i) => (
                   <motion.div
                     key={i}
@@ -97,7 +97,7 @@ const Certificate = () => {
                     }}
                   />
                 ))}
-              </div>
+              </div> */}
 
               {/* Certificate Image */}
               <div className="relative z-10 flex justify-center items-center">

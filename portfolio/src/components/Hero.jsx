@@ -81,7 +81,7 @@ const Hero = () => {
         />
 
         {/* Floating Particles */}
-        {[...Array(20)].map((_, i) => (
+        {/* {[...Array(20)].map((_, i) => (
           <motion.div
             key={i}
             className="absolute w-2 h-2 bg-gradient-to-r from-indigo-400 to-cyan-400 rounded-full"
@@ -100,11 +100,11 @@ const Hero = () => {
               delay: Math.random() * 5,
             }}
           />
-        ))}
+        ))} */}
       </div>
 
       {/* Floating Tech Icons */}
-      <div className="absolute inset-0 z-5">
+      {/* <div className="absolute inset-0 z-5">
         {floatingIcons.map((item, index) => (
           <motion.div
             key={index}
@@ -127,7 +127,7 @@ const Hero = () => {
             {item.icon}
           </motion.div>
         ))}
-      </div>
+      </div> */}
 
       <div className="container mx-auto px-6 relative z-10">
         <div className="max-w-5xl mx-auto text-center">

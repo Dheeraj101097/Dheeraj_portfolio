@@ -62,13 +62,6 @@ const Header = ({ darkMode, toggleDarkMode }) => {
             >
               Portfolio
             </motion.span>
-            <motion.div
-              animate={{ rotate: [0, 360] }}
-              transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
-              className="absolute -top-1 -right-1"
-            >
-              <Sparkles className="w-4 h-4 text-cyan-400" />
-            </motion.div>
           </motion.div>
 
           {/* Desktop Navigation */}
