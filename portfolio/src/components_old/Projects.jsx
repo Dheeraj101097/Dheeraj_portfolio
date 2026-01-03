@@ -6,7 +6,6 @@ import {
   Zap,
   Smartphone,
   Globe,
-  Cpu,
   Star,
   Eye,
 } from "lucide-react";
@@ -19,7 +18,7 @@ const Projects = () => {
     {
       title: "Predictive Irrigation System",
       description:
-        "IoT-based smart irrigation system with real-time monitoring, Edge AI, and <> LoRa integration, achieving 97% model accuracy to optimize water usage and crop yield through automated, data-driven pump control.",
+        "IoT-based smart irrigation system with real-time monitoring, Edge AI, and LoRa integration, achieving 97% model accuracy to optimize water usage and crop yield through automated, data-driven pump control.",
       image: pis,
       tech: ["React", "Node.js", "ESP32", "MQTT", "MongoDB", "WebSocket"],
       github: "https://github.com/Dheeraj101097/Irrigo-codefinity.git",
@@ -37,7 +36,7 @@ const Projects = () => {
       github: "https://github.com/Dheeraj101097/ricelengthdetector.git",
       live: " https://flood-monitoring-system.vercel.app/",
       icon: <Zap className="w-8 h-8" />,
-      category: "IoT", //application
+      category: "IoT",
       featured: false,
     },
     {
@@ -62,7 +61,7 @@ const Projects = () => {
       github: "https://github.com/Dheeraj101097/ricelengthdetector.git",
       live: "https://rice-length-detector.vercel.app/",
       icon: <Globe className="w-8 h-8" />,
-      category: "Web", //application
+      category: "Web",
       featured: false,
     },
   ];
@@ -91,9 +90,9 @@ const Projects = () => {
   };
 
   return (
-    <section className="py-20 bg-white dark:bg-gray-800 transition-colors duration-300 relative overflow-hidden">
-      {/* Animated Background */}
-      <div className="absolute inset-0">
+    <section className="py-20 bg-gray-50 dark:bg-gray-950 transition-colors duration-300 relative overflow-hidden">
+      {/* Animated Background (Theme: Blue & Copper) */}
+      <div className="absolute inset-0 pointer-events-none">
         <motion.div
           animate={{
             rotate: [0, 360],
@@ -104,7 +103,7 @@ const Projects = () => {
             repeat: Infinity,
             ease: "linear",
           }}
-          className="absolute top-20 right-20 w-64 h-64 bg-gradient-to-r from-indigo-500/5 to-cyan-500/5 rounded-full blur-3xl"
+          className="absolute top-20 right-20 w-64 h-64 bg-gradient-to-r from-primary-500/10 to-primary-800/10 rounded-full blur-3xl"
         />
         <motion.div
           animate={{
@@ -116,7 +115,7 @@ const Projects = () => {
             repeat: Infinity,
             ease: "linear",
           }}
-          className="absolute bottom-20 left-20 w-80 h-80 bg-gradient-to-r from-emerald-500/5 to-teal-500/5 rounded-full blur-3xl"
+          className="absolute bottom-20 left-20 w-80 h-80 bg-gradient-to-r from-secondary-500/5 to-accent-500/5 rounded-full blur-3xl"
         />
       </div>
 
@@ -129,7 +128,7 @@ const Projects = () => {
           className="text-center mb-16"
         >
           <motion.h2
-            className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-indigo-500 to-cyan-500 bg-clip-text text-transparent"
+            className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-primary-600 via-secondary-500 to-accent-500 bg-clip-text text-transparent"
             animate={{
               backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"],
             }}
@@ -172,20 +171,21 @@ const Projects = () => {
                 rotateY: 5,
                 scale: 1.02,
               }}
-              className="bg-gray-50 dark:bg-gray-700 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 group relative"
+              // Card Style: Darker panel in dark mode (gray-900)
+              className="bg-white dark:bg-gray-900 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl hover:shadow-primary-500/10 dark:hover:shadow-secondary-500/10 border border-gray-100 dark:border-gray-800 hover:border-primary-200 dark:hover:border-secondary-500/30 transition-all duration-500 group relative"
               style={{
                 transformStyle: "preserve-3d",
               }}
             >
-              {/* Featured Badge */}
+              {/* Featured Badge (Copper Gradient) */}
               {project.featured && (
                 <motion.div
                   initial={{ scale: 0, rotate: -180 }}
                   animate={{ scale: 1, rotate: 0 }}
                   transition={{ delay: index * 0.1 + 0.5, duration: 0.5 }}
-                  className="absolute top-4 left-4 z-20 bg-gradient-to-r from-yellow-400 to-orange-500 text-white px-3 py-1 rounded-full text-sm font-bold flex items-center gap-1 shadow-lg"
+                  className="absolute top-4 left-4 z-20 bg-gradient-to-r from-secondary-400 to-secondary-600 text-white px-3 py-1 rounded-full text-sm font-bold flex items-center gap-1 shadow-lg"
                 >
-                  <Star className="w-4 h-4" />
+                  <Star className="w-4 h-4 fill-current" />
                   Featured
                 </motion.div>
               )}
@@ -198,13 +198,13 @@ const Projects = () => {
                   whileHover={{ scale: 1.15 }}
                 />
                 <motion.div
-                  className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+                  className="absolute inset-0 bg-gradient-to-t from-gray-900/80 via-gray-900/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"
                   initial={false}
                 />
 
-                {/* Floating Icon */}
+                {/* Floating Icon (Blue -> Cyan -> Copper) */}
                 <motion.div
-                  className="absolute top-4 right-4 p-3 bg-white/90 dark:bg-gray-800/90 rounded-full shadow-lg"
+                  className="absolute top-4 right-4 p-3 bg-white/90 dark:bg-gray-800/90 rounded-full shadow-lg backdrop-blur-sm"
                   whileHover={{
                     rotate: 360,
                     scale: 1.1,
@@ -213,7 +213,7 @@ const Projects = () => {
                 >
                   <motion.div
                     animate={{
-                      color: ["#6366F1", "#06B6D4", "#10B981", "#6366F1"],
+                      color: ["#3b82f6", "#06b6d4", "#f59e0b", "#3b82f6"],
                     }}
                     transition={{ duration: 3, repeat: Infinity }}
                   >
@@ -221,7 +221,7 @@ const Projects = () => {
                   </motion.div>
                 </motion.div>
 
-                {/* Hover Overlay with Actions */}
+                {/* Hover Actions */}
                 <motion.div
                   className="absolute inset-0 flex items-center justify-center gap-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
                   initial={false}
@@ -230,7 +230,7 @@ const Projects = () => {
                     whileHover={{ scale: 1.2, rotate: 5 }}
                     whileTap={{ scale: 0.9 }}
                     href={project.github}
-                    className="p-3 bg-white/90 dark:bg-gray-800/90 rounded-full shadow-lg hover:bg-white dark:hover:bg-gray-700 transition-colors duration-200"
+                    className="p-3 bg-white/90 dark:bg-gray-800/90 text-gray-700 dark:text-gray-200 rounded-full shadow-lg hover:text-primary-600 dark:hover:text-primary-400 transition-colors duration-200"
                   >
                     <Github size={20} />
                   </motion.a>
@@ -238,7 +238,7 @@ const Projects = () => {
                     whileHover={{ scale: 1.2, rotate: -5 }}
                     whileTap={{ scale: 0.9 }}
                     href={project.live}
-                    className="p-3 bg-indigo-500 text-white rounded-full shadow-lg hover:bg-indigo-600 transition-colors duration-200"
+                    className="p-3 bg-primary-600 text-white rounded-full shadow-lg hover:bg-primary-500 transition-colors duration-200"
                   >
                     <Eye size={20} />
                   </motion.a>
@@ -246,13 +246,13 @@ const Projects = () => {
               </div>
 
               <div className="p-6 relative">
-                {/* Animated Background Gradient */}
-                <div className="absolute inset-0 bg-gradient-to-br from-indigo-500/5 to-cyan-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-b-2xl" />
+                {/* Animated Background Gradient on Card Body */}
+                <div className="absolute inset-0 bg-gradient-to-br from-primary-500/5 to-secondary-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-b-2xl" />
 
                 <div className="relative z-10">
                   <div className="flex items-center justify-between mb-4">
                     <motion.span
-                      className="px-3 py-1 bg-indigo-100 dark:bg-indigo-900 text-indigo-700 dark:text-indigo-300 rounded-full text-sm font-medium"
+                      className="px-3 py-1 bg-primary-50 dark:bg-primary-900/30 text-primary-700 dark:text-primary-300 rounded-full text-sm font-medium border border-primary-100 dark:border-primary-800"
                       whileHover={{ scale: 1.05 }}
                     >
                       {project.category}
@@ -262,7 +262,7 @@ const Projects = () => {
                         whileHover={{ scale: 1.15, rotate: 10 }}
                         whileTap={{ scale: 0.9 }}
                         href={project.github}
-                        className="p-2 bg-gray-200 dark:bg-gray-600 rounded-full hover:bg-gray-300 dark:hover:bg-gray-500 transition-colors duration-200"
+                        className="p-2 bg-gray-100 dark:bg-gray-800 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 text-gray-600 dark:text-gray-400 transition-colors duration-200"
                       >
                         <Github size={16} />
                       </motion.a>
@@ -270,7 +270,7 @@ const Projects = () => {
                         whileHover={{ scale: 1.15, rotate: -10 }}
                         whileTap={{ scale: 0.9 }}
                         href={project.live}
-                        className="p-2 bg-indigo-500 text-white rounded-full hover:bg-indigo-600 transition-colors duration-200"
+                        className="p-2 bg-primary-100 dark:bg-primary-900/50 text-primary-600 dark:text-primary-400 rounded-full hover:bg-primary-200 dark:hover:bg-primary-900 transition-colors duration-200"
                       >
                         <ExternalLink size={16} />
                       </motion.a>
@@ -278,7 +278,7 @@ const Projects = () => {
                   </div>
 
                   <motion.h3
-                    className="text-xl font-bold text-gray-900 dark:text-white mb-3"
+                    className="text-xl font-bold text-gray-900 dark:text-gray-100 mb-3 group-hover:text-primary-600 dark:group-hover:text-secondary-400 transition-colors duration-300"
                     whileHover={{ x: 5 }}
                     transition={{ duration: 0.2 }}
                   >
@@ -301,10 +301,10 @@ const Projects = () => {
                         transition={{ delay: techIndex * 0.05 }}
                         whileHover={{
                           scale: 1.1,
-                          backgroundColor: "#6366F1",
+                          backgroundColor: "#f59e0b", // Copper Hover
                           color: "#FFFFFF",
                         }}
-                        className="px-2 py-1 bg-gray-200 dark:bg-gray-600 text-gray-700 dark:text-gray-300 rounded-lg text-xs font-medium cursor-pointer transition-all duration-200"
+                        className="px-2 py-1 bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-300 rounded-lg text-xs font-medium cursor-pointer transition-all duration-200 border border-transparent hover:border-secondary-400"
                       >
                         {tech}
                       </motion.span>

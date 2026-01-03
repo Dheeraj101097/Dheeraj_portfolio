@@ -1,27 +1,26 @@
 import React, { useState, useEffect } from "react";
-import { motion } from "framer-motion";
-import Header from "./components/Header";
-import Hero from "./components/Hero";
-import Education from "./components/Education";
-import Skills from "./components/Skills";
-import Projects from "./components/Projects";
-import Experience from "./components/Experience";
-import Contact from "./components/Contact";
-import Footer from "./components/Footer";
-import Certificate from "./components/Certificate";
+import Header from "./components_g/Header";
+import Hero from "./components_g/Hero";
+import Education from "./components_g/Education";
+import Skills from "./components_g/Skills";
+import Projects from "./components_g/Projects";
+import Experience from "./components_g/Experience";
+import Contact from "./components_g/Contact";
+import Footer from "./components_g/Footer";
+import Certificate from "./components_g/Certificate";
 
 function App() {
-  const [darkMode, setDarkMode] = useState(true);
-
-  useEffect(() => {
+  // Initialize state lazily to read localStorage BEFORE first render
+  const [darkMode, setDarkMode] = useState(() => {
     const savedMode = localStorage.getItem("darkMode");
-    if (savedMode) {
-      setDarkMode(JSON.parse(savedMode));
-    } else {
-      setDarkMode(window.matchMedia("(prefers-color-scheme: dark)").matches);
+    if (savedMode !== null) {
+      return JSON.parse(savedMode);
     }
-  }, []);
+    // Fallback to system preference
+    return window.matchMedia("(prefers-color-scheme: dark)").matches;
+  });
 
+  // Apply dark mode class to HTML element whenever state changes
   useEffect(() => {
     localStorage.setItem("darkMode", JSON.stringify(darkMode));
     if (darkMode) {
@@ -32,18 +31,22 @@ function App() {
   }, [darkMode]);
 
   const toggleDarkMode = () => {
-    setDarkMode(!darkMode);
+    setDarkMode((prev) => !prev);
   };
 
   return (
     <div
+      // CHANGED HERE: dark:bg-gray-850 -> dark:bg-gray-950
       className={`min-h-screen transition-colors duration-300 ${
-        darkMode ? "dark bg-gray-900 text-white" : "bg-gray-50 text-gray-900"
+        darkMode ? "dark bg-gray-950 text-white" : "bg-gray-50 text-gray-900"
       }`}
     >
       <Header darkMode={darkMode} toggleDarkMode={toggleDarkMode} />
       <main className="overflow-x-hidden">
-        <Hero />
+        {/* Added IDs to all sections for ScrollSpy to work */}
+        <div id="hero">
+          <Hero />
+        </div>
         <div id="experience">
           <Experience />
         </div>
