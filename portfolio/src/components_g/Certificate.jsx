@@ -112,6 +112,7 @@ const Certificate = () => {
                 <img
                   src={cert.src}
                   alt={cert.title}
+                  loading="lazy"
                   className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-110"
                 />
               </div>

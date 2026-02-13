@@ -213,16 +213,13 @@ const Projects = () => {
               )}
 
               <div className="relative overflow-hidden">
-                <motion.img
+                <img
                   src={project.image}
                   alt={project.title}
-                  className="w-full h-48 object-cover transition-transform duration-700"
-                  whileHover={{ scale: 1.15 }}
+                  loading="lazy"
+                  className="w-full h-48 object-cover transition-transform duration-700 group-hover:scale-115"
                 />
-                <motion.div
-                  className="absolute inset-0 bg-gradient-to-t from-gray-900/80 via-gray-900/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"
-                  initial={false}
-                />
+                <div className="absolute inset-0 bg-gradient-to-t from-gray-900/80 via-gray-900/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
                 {/* Floating Icon (Green -> Mint -> Teal cycle) */}
                 <motion.div

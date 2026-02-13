@@ -10,6 +10,8 @@ import {
   Twitter,
   Instagram,
   Zap,
+  CheckCircle,
+  AlertCircle,
 } from "lucide-react";
 
 const Contact = () => {
@@ -21,6 +23,7 @@ const Contact = () => {
   });
 
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState(null);
 
   const handleChange = (e) => {
     setFormData({
@@ -32,13 +35,32 @@ const Contact = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
+    setSubmitStatus(null);
 
-    // Simulate form submission
-    await new Promise((resolve) => setTimeout(resolve, 2000));
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
 
-    alert("Thank you for your message! I'll get back to you soon.");
-    setFormData({ name: "", email: "", subject: "", message: "" });
-    setIsSubmitting(false);
+      const data = await response.json();
+
+      if (response.ok) {
+        setSubmitStatus('success');
+        setFormData({ name: "", email: "", subject: "", message: "" });
+      } else {
+        setSubmitStatus('error');
+      }
+    } catch (error) {
+      console.error('Error:', error);
+      setSubmitStatus('error');
+    } finally {
+      setIsSubmitting(false);
+      setTimeout(() => setSubmitStatus(null), 5000);
+    }
   };
 
   const contactInfo = [
@@ -339,6 +361,28 @@ const Contact = () => {
                       )}
                     </div>
                   </motion.button>
+
+                  {/* Status Messages */}
+                  {submitStatus === 'success' && (
+                    <motion.div
+                      initial={{ opacity: 0, y: -10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      className="flex items-center gap-2 p-4 bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800 rounded-xl text-green-700 dark:text-green-400"
+                    >
+                      <CheckCircle className="w-5 h-5" />
+                      <span>Message sent successfully! I'll get back to you soon.</span>
+                    </motion.div>
+                  )}
+                  {submitStatus === 'error' && (
+                    <motion.div
+                      initial={{ opacity: 0, y: -10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      className="flex items-center gap-2 p-4 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-xl text-red-700 dark:text-red-400"
+                    >
+                      <AlertCircle className="w-5 h-5" />
+                      <span>Failed to send message. Please try again or email directly.</span>
+                    </motion.div>
+                  )}
                 </form>
               </div>
             </motion.div>

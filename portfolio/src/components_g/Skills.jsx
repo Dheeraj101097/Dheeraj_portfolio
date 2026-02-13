@@ -25,12 +25,11 @@ const Skills = () => {
     {
       icon: <Code size={32} />,
       title: "Programming Languages",
-      // Theme: Primary (Vibrant Green)
       gradient: "from-primary-600 to-primary-400",
       skills: [
         {
-          name: "C",
-          icon: <Cpu className="w-8 h-8" />,
+          name: "C/C++",
+          icon: <Code className="w-8 h-8" />,
           color: "text-primary-500",
         },
         {
@@ -39,107 +38,103 @@ const Skills = () => {
           color: "text-primary-600",
         },
         {
-          name: "JavaScript",
+          name: "Python",
           icon: <Terminal className="w-8 h-8" />,
-          color: "text-secondary-400", // Teal
+          color: "text-accent-500",
         },
         {
-          name: "Python",
+          name: "JavaScript",
           icon: <Code className="w-8 h-8" />,
-          color: "text-accent-500", // Mint
+          color: "text-secondary-400",
         },
       ],
     },
 
     {
       icon: <Cpu size={32} />,
-      title: "Electronics & Hardware",
-      // Theme: Secondary (Deep Green)
+      title: "Embedded Systems",
       gradient: "from-secondary-600 to-secondary-400",
       skills: [
         {
-          name: "Arduino & ESP32",
+          name: "ESP32/ESP-IDF",
           icon: <Cpu className="w-8 h-8" />,
           color: "text-accent-500",
         },
         {
-          name: "Raspberry Pi",
-          icon: <Monitor className="w-8 h-8" />,
+          name: "FreeRTOS",
+          icon: <TimerIcon className="w-8 h-8" />,
           color: "text-secondary-500",
         },
         {
-          name: "PCB Design",
-          icon: <Layers className="w-8 h-8" />,
+          name: "Arduino",
+          icon: <Zap className="w-8 h-8" />,
           color: "text-primary-500",
         },
         {
-          name: "Interrupts & Timers",
-          icon: <TimerIcon className="w-8 h-8" />,
+          name: "Raspberry Pi",
+          icon: <Monitor className="w-8 h-8" />,
           color: "text-secondary-600",
         },
       ],
     },
 
     {
-      icon: <Smartphone size={32} />,
-      title: "IoT & Embedded",
-      // Theme: Mix (Green to Mint)
+      icon: <Wifi size={32} />,
+      title: "IoT & Protocols",
       gradient: "from-primary-500 to-accent-500",
       skills: [
         {
-          name: "Wi-Fi & Bluetooth",
-          icon: <Wifi className="w-8 h-8" />,
+          name: "MQTT",
+          icon: <Server className="w-8 h-8" />,
           color: "text-primary-400",
         },
         {
-          name: "LoRa & MQTT",
-          icon: <Server className="w-8 h-8" />,
+          name: "AWS IoT",
+          icon: <Database className="w-8 h-8" />,
           color: "text-accent-400",
         },
         {
-          name: "HTTP/REST APIs",
-          icon: <Zap className="w-8 h-8" />,
+          name: "Wi-Fi/BLE",
+          icon: <Wifi className="w-8 h-8" />,
           color: "text-secondary-400",
         },
         {
-          name: "Real-time Systems",
-          icon: <Cpu className="w-8 h-8" />,
+          name: "HTTP/WebSocket",
+          icon: <Globe className="w-8 h-8" />,
           color: "text-primary-600",
         },
       ],
     },
     {
-      icon: <Globe size={32} />,
-      title: "Web Technologies",
-      // Theme: Accent (Mint)
+      icon: <Layers size={32} />,
+      title: "Hardware & PCB",
       gradient: "from-accent-600 to-accent-400",
       skills: [
         {
-          name: "MongoDB",
-          icon: <Database className="w-8 h-8" />,
+          name: "PCB Design",
+          icon: <Layers className="w-8 h-8" />,
           color: "text-secondary-500",
         },
         {
-          name: "Express.js",
-          icon: <Layers className="w-8 h-8" />,
-          color: "text-primary-500 dark:text-primary-400",
+          name: "Altium Designer",
+          icon: <Cpu className="w-8 h-8" />,
+          color: "text-primary-500",
         },
         {
-          name: "React",
-          icon: <Globe className="w-8 h-8" />,
+          name: "Proteus",
+          icon: <Monitor className="w-8 h-8" />,
           color: "text-primary-400",
         },
         {
-          name: "Node.js",
-          icon: <Server className="w-8 h-8" />,
+          name: "Oscilloscope",
+          icon: <Zap className="w-8 h-8" />,
           color: "text-secondary-400",
         },
       ],
     },
     {
       icon: <Database size={32} />,
-      title: "Tools & Integration",
-      // Theme: Primary Dark
+      title: "Tools & Platforms",
       gradient: "from-primary-700 to-primary-500",
       skills: [
         {
@@ -148,46 +143,45 @@ const Skills = () => {
           color: "text-secondary-500",
         },
         {
-          name: "Proteus",
-          icon: <Layers className="w-8 h-8" />,
+          name: "VS Code",
+          icon: <Code className="w-8 h-8" />,
           color: "text-primary-500",
         },
         {
-          name: "AI/ML",
-          icon: <Server className="w-8 h-8" />,
+          name: "Linux",
+          icon: <Terminal className="w-8 h-8" />,
           color: "text-accent-500",
         },
         {
-          name: "MATLAB",
-          icon: <Terminal className="w-8 h-8" />,
+          name: "Docker",
+          icon: <Server className="w-8 h-8" />,
           color: "text-secondary-600",
         },
       ],
     },
     {
       icon: <Brain size={32} />,
-      title: "Soft Skills",
-      // Theme: Secondary (Deep Green)
+      title: "Advanced Skills",
       gradient: "from-secondary-500 to-secondary-300",
       skills: [
         {
-          name: "Problem Solving",
+          name: "Edge AI/ML",
           icon: <Brain className="w-8 h-8" />,
           color: "text-primary-500",
         },
         {
-          name: "Collaboration",
-          icon: <Users className="w-8 h-8" />,
+          name: "OTA Updates",
+          icon: <Zap className="w-8 h-8" />,
           color: "text-accent-500",
         },
         {
-          name: "Management",
-          icon: <Target className="w-8 h-8" />,
+          name: "RTOS",
+          icon: <TimerIcon className="w-8 h-8" />,
           color: "text-secondary-600",
         },
         {
-          name: "Public Speaking",
-          icon: <Presentation className="w-8 h-8" />,
+          name: "DSP",
+          icon: <Cpu className="w-8 h-8" />,
           color: "text-primary-400",
         },
       ],

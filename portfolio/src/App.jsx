@@ -1,13 +1,15 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, lazy, Suspense } from "react";
 import Header from "./components_g/Header";
 import Hero from "./components_g/Hero";
-import Education from "./components_g/Education";
-import Skills from "./components_g/Skills";
-import Projects from "./components_g/Projects";
-import Experience from "./components_g/Experience";
-import Contact from "./components_g/Contact";
-import Footer from "./components_g/Footer";
-import Certificate from "./components_g/Certificate";
+
+// Lazy load components below the fold
+const Education = lazy(() => import("./components_g/Education"));
+const Skills = lazy(() => import("./components_g/Skills"));
+const Projects = lazy(() => import("./components_g/Projects"));
+const Experience = lazy(() => import("./components_g/Experience"));
+const Contact = lazy(() => import("./components_g/Contact"));
+const Footer = lazy(() => import("./components_g/Footer"));
+const Certificate = lazy(() => import("./components_g/Certificate"));
 
 function App() {
   // Initialize state lazily to read localStorage BEFORE first render
@@ -36,37 +38,37 @@ function App() {
 
   return (
     <div
-      // CHANGED HERE: dark:bg-gray-850 -> dark:bg-gray-950
       className={`min-h-screen transition-colors duration-300 ${
         darkMode ? "dark bg-gray-950 text-white" : "bg-gray-50 text-gray-900"
       }`}
     >
       <Header darkMode={darkMode} toggleDarkMode={toggleDarkMode} />
       <main className="overflow-x-hidden">
-        {/* Added IDs to all sections for ScrollSpy to work */}
         <div id="hero">
           <Hero />
         </div>
-        <div id="experience">
-          <Experience />
-        </div>
-        <div id="skills">
-          <Skills />
-        </div>
-        <div id="projects">
-          <Projects />
-        </div>
-        <div id="certificate">
-          <Certificate />
-        </div>
-        <div id="education">
-          <Education />
-        </div>
-        <div id="contact">
-          <Contact />
-        </div>
+        <Suspense fallback={<div className="h-screen flex items-center justify-center"><div className="w-8 h-8 border-4 border-primary-500 border-t-transparent rounded-full animate-spin"></div></div>}>
+          <div id="experience">
+            <Experience />
+          </div>
+          <div id="skills">
+            <Skills />
+          </div>
+          <div id="projects">
+            <Projects />
+          </div>
+          <div id="certificate">
+            <Certificate />
+          </div>
+          <div id="education">
+            <Education />
+          </div>
+          <div id="contact">
+            <Contact />
+          </div>
+          <Footer />
+        </Suspense>
       </main>
-      <Footer />
     </div>
   );
 }

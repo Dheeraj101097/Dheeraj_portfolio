@@ -242,15 +242,22 @@
 // export default Hero;
 
 // below is with video abv slide show imgs
-import React from "react";
+import React, { useRef, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Mail, Newspaper } from "lucide-react";
 
-// IMPORT YOUR VIDEO HERE
-// Make sure you put a file named 'hero-video.mp4' in your assets folder!
 import heroVideo from "../assets/herovid.mp4";
 
 const Hero = () => {
+  const videoRef = useRef(null);
+
+  useEffect(() => {
+    // Optimize video loading
+    if (videoRef.current) {
+      videoRef.current.playbackRate = 1;
+    }
+  }, []);
+
   const scrollToSection = (href) => {
     const element = document.querySelector(href);
     if (element) {
@@ -264,13 +271,14 @@ const Hero = () => {
       className="min-h-screen flex items-center justify-center relative overflow-hidden bg-gray-950"
     >
       <div className="absolute inset-0 z-0">
-        {/* The Video Player */}
         <video
+          ref={videoRef}
           autoPlay
           loop
           muted
           playsInline
-          className="absolute inset-0 w-full h-full object-cover"
+          preload="auto"
+          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 min-w-full min-h-full w-auto h-auto max-w-none will-change-transform"
         >
           <source src={heroVideo} type="video/mp4" />
           Your browser does not support the video tag.
@@ -287,7 +295,7 @@ const Hero = () => {
       {/* =========================================
           CONTENT LAYER (Text & Buttons)
       ========================================= */}
-      <div className="container mx-auto px-6 relative z-10">
+      <div className="container mx-auto px-4 sm:px-6 relative z-10">
         <div className="max-w-5xl h-fit mx-auto text-center">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -296,7 +304,7 @@ const Hero = () => {
             className="mb-8"
           >
             {/* NAME TITLE */}
-            <motion.h1 className="text-5xl md:text-7xl font-medium mb-6 mt-16 bg-gradient-to-r from-primary-500 via-secondary-500 to-accent-400 bg-clip-text text-transparent pt-8 animate-gradient-x">
+            <motion.h1 className="text-3xl sm:text-5xl md:text-7xl font-medium mb-4 sm:mb-6 mt-8 sm:mt-16 bg-gradient-to-r from-primary-500 via-secondary-500 to-accent-400 bg-clip-text text-transparent pt-4 sm:pt-8 animate-gradient-x">
               <motion.span
                 animate={{
                   textShadow: [
@@ -313,7 +321,7 @@ const Hero = () => {
 
             {/* JOB TITLE */}
             <motion.h2
-              className="text-2xl md:text-3xl font-semibold mb-6 text-gray-200"
+              className="text-xl sm:text-2xl md:text-3xl font-semibold mb-4 sm:mb-6 text-gray-200"
               initial={{ opacity: 0, x: -50 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8, delay: 0.3 }}
@@ -344,7 +352,7 @@ const Hero = () => {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="text-lg md:text-xl text-gray-300 mb-12 max-w-3xl mx-auto leading-relaxed"
+            className="text-base sm:text-lg md:text-xl text-gray-300 mb-8 sm:mb-12 max-w-3xl mx-auto leading-relaxed px-4"
           >
             <motion.span
               animate={{ opacity: [1, 0.7, 1] }}
@@ -360,16 +368,17 @@ const Hero = () => {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
-            className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-16"
+            className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-center mb-8 sm:mb-16 px-4"
           >
             {/* BUTTON 1 */}
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="w-48 h-14 border-2 border-transparent bg-gradient-to-r from-primary-600 to-accent-500 text-white rounded-2xl font-semibold shadow-lg flex items-center justify-center gap-2 hover:shadow-primary-500/30"
+              className="group relative w-full sm:w-48 h-12 sm:h-14 border-2 border-primary-500 text-primary-400 rounded-2xl font-semibold flex items-center justify-center gap-2 overflow-hidden transition-all duration-300"
             >
-              <Newspaper size={20} />
-              <span>View Resume</span>
+              <div className="absolute inset-0 bg-gradient-to-r from-primary-600 to-secondary-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+              <Newspaper size={20} className="relative z-10 group-hover:text-white transition-colors" />
+              <span className="relative z-10 group-hover:text-white transition-colors">View Resume</span>
             </motion.button>
 
             {/* BUTTON 2 */}
@@ -377,10 +386,11 @@ const Hero = () => {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               onClick={() => scrollToSection("#contact")}
-              className="w-48 h-14 border-2 border-primary-500 text-primary-400 bg-black/30 backdrop-blur-sm rounded-2xl font-semibold flex items-center justify-center gap-2 transition-all duration-300 hover:border-secondary-500 hover:text-secondary-400 hover:bg-secondary-500/10 hover:shadow-[0_0_20px_rgba(27,118,92,0.3)]"
+              className="group relative w-full sm:w-48 h-12 sm:h-14 border-2 border-primary-500 text-primary-400 rounded-2xl font-semibold flex items-center justify-center gap-2 overflow-hidden transition-all duration-300"
             >
-              <Mail size={20} />
-              <span>Contact Me</span>
+              <div className="absolute inset-0 bg-gradient-to-r from-primary-600 to-secondary-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+              <Mail size={20} className="relative z-10 group-hover:text-white transition-colors" />
+              <span className="relative z-10 group-hover:text-white transition-colors">Contact Me</span>
             </motion.button>
           </motion.div>
         </div>
