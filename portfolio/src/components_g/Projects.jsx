@@ -8,13 +8,43 @@ import {
   Globe,
   Star,
   Eye,
+  Leaf,
+  Shield,
+  Cpu,
 } from "lucide-react";
 import pis from "../assets/pis.png";
 import foodapp from "../assets/foodapp.png";
 import floods from "../assets/floods.png";
-
+import dssat from "../assets/dssat.png";
+import risd from "../assets/risd.png";
+import riceg from "../assets/riceg.png";
 const Projects = () => {
   const projects = [
+    {
+      title: "RIS Control Dashboard (ESP32)",
+      description:
+        "An embedded web server hosted entirely on an ESP32 to control Reconfigurable Intelligent Surfaces (RIS). Features a responsive UI served via SPIFFS, real-time pattern visualization using WebSockets, and secure Wi-Fi provisioning for seamless hardware-software integration.",
+      image: risd,
+      tech: ["ESP32", "C++", "WebSocket", "HTML/CSS", "SPIFFS"],
+      github: "https://github.com/Dheeraj101097", // Add actual link if available
+      live: "#",
+      icon: <Cpu className="w-8 h-8" />,
+      category: "IoT",
+      featured: false,
+    },
+    {
+      title: "Post-Quantum Crypto Benchmarking",
+      description:
+        "A comparative benchmarking framework evaluating NIST PQC standards (ML-DSA vs. FN-DSA) on resource-constrained ESP32 devices. Measured computational latency, energy efficiency, to guide the secure migration of IoT infrastructure.",
+      image:
+        "https://images.pexels.com/photos/60504/security-protection-anti-virus-software-60504.jpeg?auto=compress&cs=tinysrgb&w=800",
+      tech: ["C", "Python", "ESP32", "liboqs", "Cryptography", "FreeRTOS"],
+      github: "https://github.com/Dheeraj101097", // Add actual link if availableand bandwidth overhead
+      live: "#",
+      icon: <Shield className="w-8 h-8" />, // Make sure to import Shield from lucide-react
+      category: "Security",
+      featured: false,
+    },
     {
       title: "Predictive Irrigation System",
       description:
@@ -26,6 +56,18 @@ const Projects = () => {
       icon: <Smartphone className="w-8 h-8" />,
       category: "IoT",
       featured: true,
+    },
+    {
+      title: "Soybean Yield Prediction Framework",
+      description:
+        "A hybrid research framework combining the DSSAT-Pythia crop simulation model with a CNN-LSTM deep learning network. Calibrated using remote sensing and NASA POWER weather data to generate high-resolution yield estimates for Bundelkhand, India, achieving 98% prediction accuracy (R²).",
+      image: dssat,
+      tech: ["Python", "DSSAT", "Pythia", "Remote Sensing"],
+      github: "https://github.com/Dheeraj101097", // Add actual link if available
+      live: "#",
+      icon: <Leaf className="w-8 h-8" />, // Make sure to import Leaf from lucide-react
+      category: "ML/AI",
+      featured: false,
     },
     {
       title: "FloodSense - Flood Monitoring System",
@@ -40,26 +82,25 @@ const Projects = () => {
       featured: false,
     },
     {
-      title: "FoodZone - AI Recipe App",
+      title: "Rice Grain Length Analysis System",
       description:
-        "A full-stack, AI-enhanced recipe management web app with secure user authentication, React Router-based navigation, full CRUD functionality for 150+ users, and optimized performance with Google AI integration for faster, more accurate recipe searches.",
-      image: foodapp,
-      tech: ["React", "Express.js", "MongoDB", "Stripe", "JWT", "Tailwind CSS"],
-      github: "https://github.com/Dheeraj101097/khanabanao.git",
-      live: "https://foodzone-woad.vercel.app",
+        "A Python-based desktop application with OpenCV for accurate rice grain length analysis and classification, achieving over 95% accuracy using image processing techniques like thresholding, edge detection, and contour analysis, with a user-friendly GUI for quality assessment.",
+      image: riceg,
+      tech: ["Python", "PyQt5", "OpenCV", "Matplotlib"],
+      github: "https://github.com/Dheeraj101097/ricelengthdetector.git",
+      live: "https://rice-length-detector.vercel.app/",
       icon: <Globe className="w-8 h-8" />,
       category: "Web",
       featured: false,
     },
     {
-      title: "Rice Grain Length Analysis System",
+      title: "FoodZone - AI Recipe App",
       description:
-        "A Python-based desktop application with OpenCV for accurate rice grain length analysis and classification, achieving over 95% accuracy using image processing techniques like thresholding, edge detection, and contour analysis, with a user-friendly GUI for quality assessment.",
-      image:
-        "https://images.pexels.com/photos/1181298/pexels-photo-1181298.jpeg?auto=compress&cs=tinysrgb&w=800",
-      tech: ["Python", "PyQt5", "OpenCV", "Matplotlib"],
-      github: "https://github.com/Dheeraj101097/ricelengthdetector.git",
-      live: "https://rice-length-detector.vercel.app/",
+        "A full-stack, AI-enhanced recipe management web app with secure user authentication, React Router-based navigation, full CRUD functionality for 150+ users, and optimized performance with Google AI integration for faster, more accurate recipe searches.",
+      image: foodapp,
+      tech: ["React", "Express.js", "MongoDB", "Node.js"],
+      github: "https://github.com/Dheeraj101097/khanabanao.git",
+      live: "https://foodzone-woad.vercel.app",
       icon: <Globe className="w-8 h-8" />,
       category: "Web",
       featured: false,

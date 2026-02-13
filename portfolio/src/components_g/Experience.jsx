@@ -10,7 +10,7 @@ import {
   X,
   ChevronRight,
 } from "lucide-react";
-import omlikids from "../assets/mw.png";
+import omlikids from "../assets/omli.png";
 import mw from "../assets/mw.png";
 import bombay from "../assets/bombay.png";
 import roorkee from "../assets/roorkee.png";

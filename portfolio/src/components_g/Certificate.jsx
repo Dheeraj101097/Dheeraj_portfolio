@@ -1,44 +1,56 @@
 import React from "react";
 import { motion } from "framer-motion";
 
-import certificate1 from "../assets/certificate_1.png";
+// Import your images
 import certificate2 from "../assets/certificate_2.png";
 import certificate3 from "../assets/certificate_3.png";
 import certificate4 from "../assets/certificate_4.png";
 import certificate5 from "../assets/certificate_5.jpg";
 import certificate6 from "../assets/certificate_6.jpg";
+import nptelns from "../assets/certificate_1.jpg";
+import nptelj from "../assets/certificate_2.jpg";
+import nptelcc from "../assets/certificate_3.jpg";
+import iitbi from "../assets/iitbi.jpg";
+import iitri from "../assets/iitri.jpeg";
+import ide from "../assets/ide.jpg";
 
 const Certificate = () => {
+  // Update data to include Titles
   const certificateData = [
-    certificate4,
-    certificate5,
-    certificate1,
-    certificate2,
-    certificate3,
-    certificate6,
+    { src: iitbi, title: "IIT Bombay Internship" },
+    { src: iitri, title: "IIT Roorkee SPARK" },
+    { src: nptelns, title: "NPTEL Network Security (Topper)" },
+    { src: nptelj, title: "NPTEL Java Programming (Topper)" },
+    { src: nptelcc, title: "NPTEL Cloud Computing" },
+    { src: ide, title: "Innovation Driven Entrepreneurship" },
+    { src: certificate4, title: "GFG Hacktivate (Top 10)" },
+    { src: certificate5, title: "Vertex Innovate (Finalist)" },
+    { src: certificate2, title: "Web Development" },
+    { src: certificate3, title: "" },
+    { src: certificate6, title: "" },
   ];
 
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
-      transition: { staggerChildren: 0.15 },
+      transition: { staggerChildren: 0.1 },
     },
   };
 
   const cardVariants = {
-    hidden: { opacity: 0, y: 50, scale: 0.9 },
+    hidden: { opacity: 0, y: 30, scale: 0.95 },
     visible: {
       opacity: 1,
       y: 0,
       scale: 1,
-      transition: { duration: 0.6, ease: "easeOut" },
+      transition: { duration: 0.5, ease: "easeOut" },
     },
   };
 
   return (
     <section className="py-20 bg-gray-50 dark:bg-gray-950 transition-colors duration-300 relative overflow-hidden">
-      {/* Background Glows (Green & Teal) */}
+      {/* Background Glows */}
       <div className="absolute inset-0 pointer-events-none">
         <motion.div
           animate={{
@@ -77,36 +89,38 @@ const Certificate = () => {
           </p>
         </motion.div>
 
-        {/* Certificate Cards */}
+        {/* Certificate Grid */}
         <motion.div
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8"
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6"
         >
-          {certificateData.map((certificate, index) => (
+          {certificateData.map((cert, index) => (
             <motion.div
               key={index}
               variants={cardVariants}
-              whileHover={{
-                scale: 1.05,
-                y: -5,
-                rotateY: 5,
-              }}
-              className="bg-white dark:bg-gray-900 rounded-2xl p-4 shadow-lg hover:shadow-2xl hover:shadow-primary-500/20 dark:hover:shadow-secondary-500/20 border border-gray-100 dark:border-gray-800 hover:border-primary-200 dark:hover:border-secondary-500/50 transition-all duration-500 relative overflow-hidden group"
-              style={{ transformStyle: "preserve-3d" }}
+              whileHover={{ y: -8 }}
+              className="bg-white dark:bg-gray-900 rounded-2xl shadow-lg hover:shadow-2xl hover:shadow-primary-500/10 dark:hover:shadow-secondary-500/10 border border-gray-100 dark:border-gray-800 transition-all duration-300 group flex flex-col overflow-hidden"
             >
-              {/* Gradient Overlay (Hidden by default, visible on hover) */}
-              <div className="absolute inset-0 bg-gradient-to-br from-primary-500/10 to-accent-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl pointer-events-none" />
+              {/* Image Container with Smooth Zoom */}
+              <div className="relative overflow-hidden h-48 w-full bg-gray-100 dark:bg-gray-800 border-b border-gray-100 dark:border-gray-800">
+                {/* Gradient Overlay on Hover */}
+                <div className="absolute inset-0 bg-gradient-to-t from-gray-900/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-10" />
 
-              {/* Certificate Image */}
-              <div className="relative z-10 flex justify-center items-center overflow-hidden rounded-xl bg-gray-50 dark:bg-gray-800">
                 <img
-                  src={certificate}
-                  alt={`Certificate ${index + 1}`}
-                  className="w-full h-56 object-contain mix-blend-multiply dark:mix-blend-normal transform transition-transform duration-500 group-hover:scale-105"
+                  src={cert.src}
+                  alt={cert.title}
+                  className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-110"
                 />
+              </div>
+
+              {/* Title Section */}
+              <div className="p-4 text-center relative z-20 bg-white dark:bg-gray-900">
+                <h3 className="text-base font-semibold text-gray-800 dark:text-gray-200 group-hover:text-primary-600 dark:group-hover:text-secondary-400 transition-colors duration-300 line-clamp-1">
+                  {cert.title}
+                </h3>
               </div>
             </motion.div>
           ))}
