@@ -50,26 +50,10 @@ const Certificate = () => {
 
   return (
     <section className="py-20 bg-gray-50 dark:bg-gray-950 transition-colors duration-300 relative overflow-hidden">
-      {/* Background Glows */}
+      {/* Background Glows - Static */}
       <div className="absolute inset-0 pointer-events-none">
-        <motion.div
-          animate={{
-            scale: [1, 1.2, 1],
-            rotate: [0, 180, 360],
-            opacity: [0.05, 0.1, 0.05],
-          }}
-          transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
-          className="absolute top-0 right-0 w-96 h-96 bg-primary-500/20 rounded-full blur-3xl"
-        />
-        <motion.div
-          animate={{
-            scale: [1.1, 1, 1.1],
-            rotate: [360, 0],
-            opacity: [0.05, 0.15, 0.05],
-          }}
-          transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-          className="absolute bottom-0 left-0 w-80 h-80 bg-secondary-500/20 rounded-full blur-3xl"
-        />
+        <div className="absolute top-0 right-0 w-96 h-96 bg-primary-500/10 rounded-full blur-3xl" />
+        <div className="absolute bottom-0 left-0 w-80 h-80 bg-secondary-500/10 rounded-full blur-3xl" />
       </div>
 
       <div className="container mx-auto px-6 relative z-10">
@@ -101,7 +85,7 @@ const Certificate = () => {
             <motion.div
               key={index}
               variants={cardVariants}
-              whileHover={{ y: -8 }}
+              whileHover={{ y: -5 }}
               className="bg-white dark:bg-gray-900 rounded-2xl shadow-lg hover:shadow-2xl hover:shadow-primary-500/10 dark:hover:shadow-secondary-500/10 border border-gray-100 dark:border-gray-800 transition-all duration-300 group flex flex-col overflow-hidden"
             >
               {/* Image Container with Smooth Zoom */}

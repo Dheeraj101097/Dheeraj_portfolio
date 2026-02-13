@@ -224,46 +224,10 @@ const Skills = () => {
 
   return (
     <section className="py-20 bg-gray-50 dark:bg-gray-950 transition-colors duration-300 relative overflow-hidden">
-      {/* Animated Background Elements (Green/Teal/Mint) */}
+      {/* Animated Background Elements - Reduced animations */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <motion.div
-          animate={{
-            x: [0, 100, 0],
-            y: [0, -100, 0],
-            rotate: [0, 180, 360],
-          }}
-          transition={{
-            duration: 20,
-            repeat: Infinity,
-            ease: "linear",
-          }}
-          className="absolute top-10 left-10 w-64 h-64 bg-primary-500/10 rounded-full blur-3xl"
-        />
-        <motion.div
-          animate={{
-            x: [0, -150, 0],
-            y: [0, 100, 0],
-            rotate: [360, 180, 0],
-          }}
-          transition={{
-            duration: 25,
-            repeat: Infinity,
-            ease: "linear",
-          }}
-          className="absolute bottom-10 right-10 w-64 h-64 bg-secondary-500/10 rounded-full blur-3xl"
-        />
-        <motion.div
-          animate={{
-            scale: [1, 1.2, 1],
-            rotate: [0, 90, 0],
-          }}
-          transition={{
-            duration: 15,
-            repeat: Infinity,
-            ease: "easeInOut",
-          }}
-          className="absolute top-1/2 left-1/4 w-40 h-40 bg-accent-500/10 rounded-full blur-3xl"
-        />
+        <div className="absolute top-10 left-10 w-64 h-64 bg-primary-500/10 rounded-full blur-3xl" />
+        <div className="absolute bottom-10 right-10 w-64 h-64 bg-secondary-500/10 rounded-full blur-3xl" />
       </div>
 
       <div className="container mx-auto px-6 relative z-10">
@@ -295,15 +259,8 @@ const Skills = () => {
             <motion.div
               key={index}
               variants={cardVariants}
-              whileHover={{
-                scale: 1.02,
-                rotateY: 2,
-                z: 50,
-              }}
-              className="bg-white dark:bg-gray-900 rounded-2xl p-8 shadow-lg hover:shadow-2xl border border-gray-100 dark:border-gray-800 transition-all duration-500 relative overflow-hidden group"
-              style={{
-                transformStyle: "preserve-3d",
-              }}
+              whileHover={{ scale: 1.02 }}
+              className="bg-white dark:bg-gray-900 rounded-2xl p-8 shadow-lg hover:shadow-2xl border border-gray-100 dark:border-gray-800 transition-all duration-300 relative overflow-hidden group"
             >
               {/* Card Background Gradient Hover */}
               <div
@@ -312,16 +269,11 @@ const Skills = () => {
 
               <div className="relative z-10">
                 <div className="flex items-center gap-4 mb-8">
-                  <motion.div
+                  <div
                     className={`p-4 bg-gradient-to-r ${category.gradient} rounded-2xl text-white shadow-lg`}
-                    whileHover={{
-                      rotate: 360,
-                      scale: 1.1,
-                    }}
-                    transition={{ duration: 0.6 }}
                   >
                     {category.icon}
-                  </motion.div>
+                  </div>
                   <h3 className="text-xl font-bold text-gray-900 dark:text-white">
                     {category.title}
                   </h3>
@@ -338,10 +290,7 @@ const Skills = () => {
                     <motion.div
                       key={skillIndex}
                       variants={skillVariants}
-                      whileHover={{
-                        scale: 1.05,
-                        y: -5,
-                      }}
+                      whileHover={{ scale: 1.05 }}
                       className="flex flex-col items-center p-4 bg-gray-50 dark:bg-gray-800 rounded-xl hover:bg-white dark:hover:bg-gray-700 hover:shadow-md border border-transparent hover:border-secondary-500/20 transition-all duration-300 cursor-pointer group/skill"
                     >
                       <motion.div
