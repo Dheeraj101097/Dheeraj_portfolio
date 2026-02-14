@@ -30,7 +30,7 @@ const Header = ({ darkMode, toggleDarkMode }) => {
   useEffect(() => {
     const observerOptions = {
       root: null,
-      rootMargin: "-20% 0px -60% 0px", // Triggers when section is near top/middle
+      rootMargin: "-100px 0px -66% 0px",
       threshold: 0,
     };
 
@@ -44,11 +44,21 @@ const Header = ({ darkMode, toggleDarkMode }) => {
 
     const observer = new IntersectionObserver(
       observerCallback,
-      observerOptions
+      observerOptions,
     );
 
-    navItems.forEach((item) => {
-      const element = document.getElementById(item.href.substring(1));
+    // Observe all sections
+    const sections = [
+      "hero",
+      "experience",
+      "skills",
+      "projects",
+      "certificate",
+      "education",
+      "contact",
+    ];
+    sections.forEach((id) => {
+      const element = document.getElementById(id);
       if (element) observer.observe(element);
     });
 
@@ -108,7 +118,7 @@ const Header = ({ darkMode, toggleDarkMode }) => {
                   className={`relative transition-colors duration-300 font-medium ${
                     isActive
                       ? "text-primary-600 dark:text-accent-400"
-                      : "text-gray-600 dark:text-gray-300 hover:text-primary-500 dark:hover:text-accent-400"
+                      : "text-white dark:text-gray-300 hover:text-primary-500 dark:hover:text-accent-400"
                   }`}
                 >
                   {item.name}

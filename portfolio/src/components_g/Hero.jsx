@@ -242,20 +242,30 @@
 // export default Hero;
 
 // below is with video abv slide show imgs
-import React, { useRef, useEffect } from "react";
+import React, { useRef, useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { Mail, Newspaper } from "lucide-react";
 
 import heroVideo from "../assets/herovid.mp4";
+import heroVideoMob from "../assets/herovidmob.mp4";
 
 const Hero = () => {
   const videoRef = useRef(null);
+  const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
-    // Optimize video loading
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+
     if (videoRef.current) {
       videoRef.current.playbackRate = 1;
     }
+
+    return () => window.removeEventListener("resize", checkMobile);
   }, []);
 
   const scrollToSection = (href) => {
@@ -272,22 +282,27 @@ const Hero = () => {
     >
       <div className="absolute inset-0 z-0">
         <video
+          key={isMobile ? "mobile" : "desktop"}
           ref={videoRef}
           autoPlay
           loop
           muted
           playsInline
           preload="auto"
-          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 min-w-full min-h-full w-auto h-auto max-w-none will-change-transform"
+          className={`absolute will-change-transform ${
+            isMobile
+              ? "w-full h-full object-cover"
+              : "top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 min-w-full min-h-full w-auto h-auto max-w-none object-cover"
+          }`}
         >
-          <source src={heroVideo} type="video/mp4" />
+          <source src={isMobile ? heroVideoMob : heroVideo} type="video/mp4" />
           Your browser does not support the video tag.
         </video>
 
         {/* THE OVERLAY (Crucial for text readability) 
            Adjust the opacity (currently 0.8) if you want the video brighter/darker
         */}
-        <div className="absolute inset-0 bg-gray-950/80 dark:bg-gray-950/80" />
+        <div className="absolute inset-0 bg-gray-950/70 dark:bg-gray-950/70" />
 
         {/* Optional: A gradient at the bottom to blend into the next section */}
         <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-gray-950 to-transparent" />
@@ -370,28 +385,41 @@ const Hero = () => {
             transition={{ duration: 0.8, delay: 0.4 }}
             className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-center mb-8 sm:mb-16 px-4"
           >
-            {/* BUTTON 1 */}
-            <motion.button
+            {/* BUTTON 1 - Resume */}
+            <motion.a
+              href="https://drive.google.com/file/d/1M4VlIKWX4-hlHccY7lv_OThYmsKFi6eh/view?usp=sharing"
+              target="_blank"
+              rel="noopener noreferrer"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               className="group relative w-full sm:w-48 h-12 sm:h-14 border-2 border-primary-500 text-primary-400 rounded-2xl font-semibold flex items-center justify-center gap-2 overflow-hidden transition-all duration-300"
             >
               <div className="absolute inset-0 bg-gradient-to-r from-primary-600 to-secondary-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-              <Newspaper size={20} className="relative z-10 group-hover:text-white transition-colors" />
-              <span className="relative z-10 group-hover:text-white transition-colors">View Resume</span>
-            </motion.button>
+              <Newspaper
+                size={20}
+                className="relative z-10 group-hover:text-white transition-colors"
+              />
+              <span className="relative z-10 group-hover:text-white transition-colors">
+                View Resume
+              </span>
+            </motion.a>
 
-            {/* BUTTON 2 */}
-            <motion.button
+            {/* BUTTON 2 - Email */}
+            <motion.a
+              href="mailto:dheerajap6@gmail.com"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              onClick={() => scrollToSection("#contact")}
               className="group relative w-full sm:w-48 h-12 sm:h-14 border-2 border-primary-500 text-primary-400 rounded-2xl font-semibold flex items-center justify-center gap-2 overflow-hidden transition-all duration-300"
             >
               <div className="absolute inset-0 bg-gradient-to-r from-primary-600 to-secondary-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-              <Mail size={20} className="relative z-10 group-hover:text-white transition-colors" />
-              <span className="relative z-10 group-hover:text-white transition-colors">Contact Me</span>
-            </motion.button>
+              <Mail
+                size={20}
+                className="relative z-10 group-hover:text-white transition-colors"
+              />
+              <span className="relative z-10 group-hover:text-white transition-colors">
+                Contact Me
+              </span>
+            </motion.a>
           </motion.div>
         </div>
       </div>

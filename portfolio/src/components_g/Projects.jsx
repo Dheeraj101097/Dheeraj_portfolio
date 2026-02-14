@@ -55,7 +55,7 @@ const Projects = () => {
       live: "https://irrigo-codefinity.vercel.app/",
       icon: <Smartphone className="w-8 h-8" />,
       category: "IoT",
-      featured: true,
+      featured: false,
     },
     {
       title: "Soybean Yield Prediction Framework",

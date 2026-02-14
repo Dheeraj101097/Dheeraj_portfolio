@@ -18,8 +18,8 @@ function App() {
     if (savedMode !== null) {
       return JSON.parse(savedMode);
     }
-    // Fallback to system preference
-    return window.matchMedia("(prefers-color-scheme: dark)").matches;
+    // Default to light mode
+    return false;
   });
 
   // Apply dark mode class to HTML element whenever state changes
@@ -44,28 +44,28 @@ function App() {
     >
       <Header darkMode={darkMode} toggleDarkMode={toggleDarkMode} />
       <main className="overflow-x-hidden">
-        <div id="hero">
+        <section id="hero">
           <Hero />
-        </div>
+        </section>
         <Suspense fallback={<div className="h-screen flex items-center justify-center"><div className="w-8 h-8 border-4 border-primary-500 border-t-transparent rounded-full animate-spin"></div></div>}>
-          <div id="experience">
+          <section id="experience">
             <Experience />
-          </div>
-          <div id="skills">
+          </section>
+          <section id="skills">
             <Skills />
-          </div>
-          <div id="projects">
+          </section>
+          <section id="projects">
             <Projects />
-          </div>
-          <div id="certificate">
+          </section>
+          <section id="certificate">
             <Certificate />
-          </div>
-          <div id="education">
+          </section>
+          <section id="education">
             <Education />
-          </div>
-          <div id="contact">
+          </section>
+          <section id="contact">
             <Contact />
-          </div>
+          </section>
           <Footer />
         </Suspense>
       </main>

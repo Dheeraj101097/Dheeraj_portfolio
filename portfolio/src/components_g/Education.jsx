@@ -12,10 +12,10 @@ import {
 const Education = () => {
   const educationData = [
     {
-      year: "2021 - Present",
+      year: "2022 - Present",
       title: "Bachelor of Technology",
       subtitle: "Electronics & Communication Engineering",
-      institution: "Guru Ghasidas University, Bilaspur",
+      institution: "Central University, Bilaspur",
       score: "CGPA: 8.6",
       icon: <GraduationCap size={24} />,
       type: "University",
