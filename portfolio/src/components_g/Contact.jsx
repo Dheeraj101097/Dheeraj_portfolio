@@ -38,7 +38,11 @@ const Contact = () => {
     setSubmitStatus(null);
 
     try {
-      const response = await fetch('http://localhost:3245/api/contact', {
+      const apiUrl = import.meta.env.PROD 
+        ? '/api/contact' 
+        : 'http://localhost:3245/api/contact';
+      
+      const response = await fetch(apiUrl, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
