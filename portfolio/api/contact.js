@@ -1,8 +1,10 @@
 import mongoose from "mongoose";
 
-const MONGODB_URI =
-  process.env.MONGODB_URI ||
-  "mongodb+srv://dheerajap6_db_user:vrV9WYPkorEeHSSH@portfoliocluster.gnwiunn.mongodb.net/";
+const MONGODB_URI = process.env.MONGODB_URI;
+
+if (!MONGODB_URI) {
+  throw new Error('MONGODB_URI not defined in environment variables');
+}
 
 let cached = global.mongoose;
 
@@ -16,10 +18,22 @@ async function connectDB() {
   }
 
   if (!cached.promise) {
-    cached.promise = mongoose.connect(MONGODB_URI).then((mongoose) => mongoose);
+    const opts = {
+      bufferCommands: false,
+      maxPoolSize: 10,
+      serverSelectionTimeoutMS: 5000,
+      socketTimeoutMS: 45000,
+    };
+    cached.promise = mongoose.connect(MONGODB_URI, opts);
   }
 
-  cached.conn = await cached.promise;
+  try {
+    cached.conn = await cached.promise;
+  } catch (e) {
+    cached.promise = null;
+    throw e;
+  }
+
   return cached.conn;
 }
 
@@ -35,6 +49,8 @@ const Contact =
   mongoose.models.Contact || mongoose.model("Contact", contactSchema);
 
 export default async function handler(req, res) {
+  res.setHeader('Content-Type', 'application/json');
+  
   if (req.method !== "POST") {
     return res.status(405).json({ error: "Method not allowed" });
   }
@@ -62,7 +78,7 @@ export default async function handler(req, res) {
       message: "Message sent successfully",
     });
   } catch (error) {
-    console.error("Error:", error);
+    console.error("API Error:", error);
     return res.status(500).json({
       error: "Failed to send message",
       details: error.message,

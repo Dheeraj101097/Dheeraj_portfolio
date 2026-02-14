@@ -19,6 +19,8 @@ Add this environment variable:
 - **Value**: `mongodb+srv://dheerajap6_db_user:vrV9WYPkorEeHSSH@portfoliocluster.gnwiunn.mongodb.net/portfolio?retryWrites=true&w=majority`
 - **Environment**: Select all (Production, Preview, Development)
 
+⚠️ **CRITICAL**: The URI MUST include `/portfolio` database name and query parameters
+
 ### Step 3: Redeploy
 After adding the environment variable, redeploy your application:
 ```bash
