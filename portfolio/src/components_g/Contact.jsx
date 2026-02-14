@@ -42,6 +42,9 @@ const Contact = () => {
         ? '/api/contact' 
         : 'http://localhost:3245/api/contact';
       
+      console.log('Submitting to:', apiUrl);
+      console.log('Form data:', formData);
+      
       const response = await fetch(apiUrl, {
         method: 'POST',
         headers: {
@@ -51,15 +54,17 @@ const Contact = () => {
       });
 
       const data = await response.json();
+      console.log('Response:', response.status, data);
 
       if (response.ok) {
         setSubmitStatus('success');
         setFormData({ name: "", email: "", subject: "", message: "" });
       } else {
+        console.error('Error response:', data);
         setSubmitStatus('error');
       }
     } catch (error) {
-      console.error('Error:', error);
+      console.error('Fetch error:', error);
       setSubmitStatus('error');
     } finally {
       setIsSubmitting(false);
