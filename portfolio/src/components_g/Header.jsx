@@ -26,6 +26,18 @@ const Header = ({ darkMode, toggleDarkMode }) => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  // Close mobile menu when switching to desktop layout
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth >= 768) {
+        setIsMobileMenuOpen(false);
+      }
+    };
+
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
   // Handle Active Section Detection (ScrollSpy)
   useEffect(() => {
     const observerOptions = {
@@ -82,11 +94,15 @@ const Header = ({ darkMode, toggleDarkMode }) => {
     setIsMobileMenuOpen(false);
   };
 
+  const toggleMobileMenu = () => {
+    setIsMobileMenuOpen((prev) => !prev);
+  };
+
   return (
     <motion.header
       initial={{ y: -100 }}
       animate={{ y: 0 }}
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+      className={`fixed top-0 left-0 right-0 z-[70] transition-all duration-500 ${
         isScrolled
           ? "bg-white/90 dark:bg-gray-950/90 backdrop-blur-xl shadow-lg border-b border-gray-200/50 dark:border-gray-850/50"
           : "bg-transparent py-4"
@@ -111,6 +127,7 @@ const Header = ({ darkMode, toggleDarkMode }) => {
               return (
                 <motion.button
                   key={item.name}
+                  type="button"
                   onClick={() => scrollToSection(item.href)}
                   initial={{ opacity: 0, y: -20 }}
                   animate={{ opacity: 1, y: 0 }}
@@ -135,6 +152,7 @@ const Header = ({ darkMode, toggleDarkMode }) => {
 
             {/* Dark Mode Toggle */}
             <motion.button
+              type="button"
               onClick={toggleDarkMode}
               whileHover={{ scale: 1.1, rotate: 180 }}
               whileTap={{ scale: 0.9 }}
@@ -152,30 +170,36 @@ const Header = ({ darkMode, toggleDarkMode }) => {
           {/* Mobile Menu Button */}
           <div className="md:hidden flex items-center space-x-4">
             <motion.button
+              type="button"
               onClick={toggleDarkMode}
               whileTap={{ scale: 0.9 }}
               className="p-2 rounded-full bg-gray-100 dark:bg-gray-850 text-gray-800 dark:text-secondary-400"
             >
               {darkMode ? <Sun size={20} /> : <Moon size={20} />}
             </motion.button>
-            <motion.button
-              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            {/* <motion.button
+              type="button"
+              onClick={toggleMobileMenu}
+              aria-expanded={isMobileMenuOpen}
+              aria-controls="mobile-navigation"
+              aria-label={isMobileMenuOpen ? "Close navigation menu" : "Open navigation menu"}
               whileTap={{ scale: 0.9 }}
               className="p-2 rounded-full bg-gray-100 dark:bg-gray-850 text-gray-800 dark:text-gray-200"
             >
               {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-            </motion.button>
+            </motion.button> */}
           </div>
         </div>
 
         {/* Mobile Navigation Dropdown */}
         <motion.div
+          id="mobile-navigation"
           initial={false}
           animate={{
             height: isMobileMenuOpen ? "auto" : 0,
             opacity: isMobileMenuOpen ? 1 : 0,
           }}
-          className="md:hidden overflow-hidden"
+          className="md:hidden overflow-hidden relative z-[70]"
         >
           <div className="py-4 space-y-2 bg-white/95 dark:bg-gray-950/95 backdrop-blur-xl rounded-2xl mt-4 border border-gray-200 dark:border-gray-850 shadow-xl px-4">
             {navItems.map((item) => {
@@ -183,6 +207,7 @@ const Header = ({ darkMode, toggleDarkMode }) => {
               return (
                 <button
                   key={item.name}
+                  type="button"
                   onClick={() => scrollToSection(item.href)}
                   className={`block w-full text-left px-4 py-3 rounded-xl transition-all duration-200 font-medium ${
                     isActive

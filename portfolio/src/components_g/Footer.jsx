@@ -88,9 +88,11 @@ const Footer = () => {
             className="text-sm text-gray-600 border-t border-gray-800 pt-8 mt-8"
           >
             <p>
-              &copy; {new Date().getFullYear()} All rights reserved. Made with{" "}
-              <span className="text-secondary-500">React</span> &{" "}
-              <span className="text-accent-500">Tailwind</span>.
+              &copy; {new Date().getFullYear()} All rights reserved.
+              {/* <span className="text-secondary-500">
+                {" "}
+                Made with React
+              </span> & <span className="text-accent-500">Tailwind</span>. */}
             </p>
           </motion.div>
         </div>

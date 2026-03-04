@@ -280,7 +280,7 @@ const Hero = () => {
       id="hero"
       className="min-h-screen flex items-center justify-center relative overflow-hidden bg-gray-950"
     >
-      <div className="absolute inset-0 z-0">
+      <div className="absolute inset-0 z-0 pointer-events-none">
         <video
           key={isMobile ? "mobile" : "desktop"}
           ref={videoRef}
@@ -289,7 +289,7 @@ const Hero = () => {
           muted
           playsInline
           preload="auto"
-          className={`absolute will-change-transform ${
+          className={`absolute pointer-events-none will-change-transform ${
             isMobile
               ? "w-full h-full object-cover"
               : "top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 min-w-full min-h-full w-auto h-auto max-w-none object-cover"
@@ -310,7 +310,7 @@ const Hero = () => {
       {/* =========================================
           CONTENT LAYER (Text & Buttons)
       ========================================= */}
-      <div className="container mx-auto px-4 sm:px-6 relative z-10">
+      <div className="container mx-auto px-4 sm:px-6 relative z-10 pointer-events-auto">
         <div className="max-w-5xl h-fit mx-auto text-center">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
