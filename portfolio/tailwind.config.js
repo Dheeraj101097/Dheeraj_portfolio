@@ -1,101 +1,3 @@
-// /** @type {import('tailwindcss').Config} */
-// export default {
-//   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
-//   darkMode: "class",
-//   theme: {
-//     extend: {
-//       colors: {
-//         // 1. PRIMARY: Deep "Solder Mask" Blue
-//         primary: {
-//           50: "#eff6ff",
-//           100: "#dbeafe",
-//           200: "#bfdbfe",
-//           300: "#93c5fd",
-//           400: "#60a5fa",
-//           500: "#3b82f6", // Standard Blue
-//           600: "#2563eb", // Deep Link Blue
-//           700: "#1d4ed8",
-//           800: "#1e40af",
-//           900: "#1e3a8a", // Dark PCB Blue
-//         },
-
-//         // 2. SECONDARY: "Copper" & "Warning Light" Amber
-//         secondary: {
-//           50: "#fffbeb",
-//           100: "#fef3c7",
-//           200: "#fde68a",
-//           300: "#fcd34d",
-//           400: "#fbbf24",
-//           500: "#f59e0b", // Bright Copper
-//           600: "#d97706", // Dark Copper (Text compatible)
-//           700: "#b45309",
-//           800: "#92400e",
-//           900: "#78350f",
-//         },
-
-//         // 3. ACCENT: "Oscilloscope" Cyan
-//         accent: {
-//           50: "#ecfeff",
-//           100: "#cffafe",
-//           200: "#a5f3fc",
-//           300: "#67e8f9",
-//           400: "#22d3ee", // Electric Cyan
-//           500: "#06b6d4",
-//           600: "#0891b2",
-//           700: "#0e7490",
-//           800: "#155e75",
-//           900: "#164e63",
-//         },
-
-//         // 4. NEUTRAL: "Heat Sink" Slate
-//         // Note: Using 'extend' keeps standard grays (50-800) available
-//         gray: {
-//           850: "#1f2937", // Custom Dark Background
-//           900: "#111827", // Deepest Black
-//           950: "#0b0f19", // Almost OLED Black (Used for main background)
-//         },
-//       },
-//       animation: {
-//         "fade-in": "fadeIn 0.5s ease-in-out",
-//         "slide-up": "slideUp 0.5s ease-out",
-//         "bounce-slow": "bounce 3s infinite",
-//         "gradient-x": "gradient-x 15s ease infinite",
-//       },
-//       keyframes: {
-//         fadeIn: {
-//           "0%": { opacity: "0" },
-//           "100%": { opacity: "1" },
-//         },
-//         slideUp: {
-//           "0%": { transform: "translateY(100%)", opacity: "0" },
-//           "100%": { transform: "translateY(0)", opacity: "1" },
-//         },
-
-//         "gradient-x": {
-//           "0%, 100%": {
-//             "background-size": "200% 200%",
-//             "background-position": "left center",
-//           },
-//           "50%": {
-//             "background-size": "200% 200%",
-//             "background-position": "right center",
-//           },
-//         },
-//       },
-//       fontFamily: {
-//         sans: ["Electrolize", "system-ui", "sans-serif"],
-//       },
-//       spacing: {
-//         18: "4.5rem",
-//         88: "22rem",
-//       },
-//     },
-//   },
-//   plugins: [],
-// };
-
-// abv is amber green blue
-// below pcb colors
 /** @type {import('tailwindcss').Config} */
 export default {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
@@ -103,89 +5,99 @@ export default {
   theme: {
     extend: {
       colors: {
-        // 1. PRIMARY: The main vibrant green (#1ec988)
+        // ─── Pastel mesh palette (raw tokens) ─────────────────────────────
+        pastel: {
+          peach:  "#eddcd2",
+          cream:  "#fff1e6",
+          blush:  "#fde2e4",
+          rose:   "#fad2e1",
+          teal:   "#c5dedd",
+          sage:   "#dbe7e4",
+          ivory:  "#f0efeb",
+          sky:    "#d6e2e9",
+          steel:  "#bcd4e6",
+          slate:  "#99c1de",
+        },
+
+        // ─── Primary: steel-blue family (interactive, links, highlights) ──
         primary: {
-          50: "#ebfef5",
-          100: "#d0fce7",
-          200: "#a3f8d4",
-          300: "#6edbae", // Lighter shade from palette
-          400: "#34d399",
-          500: "#1ec988", // The main vibrant green
-          600: "#059669",
-          700: "#047857",
-          800: "#1b765c", // Darker shade from palette
-          900: "#064e3b",
+          50:  "#f4f9fd",
+          100: "#e6f2f8",
+          200: "#d6e2e9",   // sky
+          300: "#bcd4e6",   // steel
+          400: "#99c1de",   // slate
+          500: "#7aafc8",   // mid tone
+          600: "#5e96b0",   // deeper, text-safe
+          700: "#4a7d96",
+          800: "#3a6478",
+          900: "#2c4e5e",
         },
 
-        // 2. SECONDARY: A deeper, more forest green (#1b765c)
-        // Use for: Hover effects, less dominant elements
+        // ─── Secondary: warm pastel family (rose / peach) ─────────────────
         secondary: {
-          50: "#f0fdfa",
-          100: "#ccfbf1",
-          200: "#99f6e4",
-          300: "#5eead4",
-          400: "#2dd4bf",
-          500: "#14b8a6",
-          600: "#1b765c", // Deep Teal-Green
-          700: "#0f766e",
-          800: "#115e59",
-          900: "#134e4a",
+          50:  "#fffaf8",
+          100: "#fff1e6",   // cream
+          200: "#eddcd2",   // peach
+          300: "#fde2e4",   // blush
+          400: "#fad2e1",   // rose ← dark-mode glow orb
+          500: "#f0c4d0",
+          600: "#d4a0b4",
+          700: "#b87c98",
+          800: "#9c5878",
+          900: "#7a3858",
         },
 
-        // 3. ACCENT: A bright, pale mint green (#6edbae)
-        // Use for: Highlights, glows, borders
+        // ─── Accent: teal / sage family (borders, tags, success) ──────────
         accent: {
-          50: "#f0fdf4",
-          100: "#dcfce7",
-          200: "#bbf7d0",
-          300: "#86efac",
-          400: "#6edbae", // Pale Mint Green
-          500: "#22c55e",
-          600: "#16a34a",
-          700: "#15803d",
-          800: "#166534",
-          900: "#14532d",
+          50:  "#f2fbfb",
+          100: "#e0f4f2",
+          200: "#dbe7e4",   // sage
+          300: "#c5dedd",   // teal ← dark-mode glow orb
+          400: "#a8d0ce",
+          500: "#8bc2c0",
+          600: "#6eb4b2",
+          700: "#52a0a0",
+          800: "#3e8888",
+          900: "#2c7070",
         },
 
-        // 4. NEUTRAL: Dark Circuit Board Background (#1c2c22)
-        // gray: {
-        //   850: "#1f2937",
-        //   900: "#1c2c22", // Custom Circuit Board Dark
-        //   950: "#15231b", // Even Darker for contrast
-        // },
+        // ─── Neutral grays (dark backgrounds) ─────────────────────────────
         gray: {
-          850: "#171717", // Neutral dark gray for cards
-          900: "#0a0a0a", // Deep neutral black
-          950: "#030712", // True deep black background
+          850: "#171717",
+          900: "#111111",
+          950: "#000000",   // pure black for dark mode
         },
       },
 
-      // ANIMATIONS
+      // ─── Animations ───────────────────────────────────────────────────────
       animation: {
-        "fade-in": "fadeIn 0.5s ease-in-out",
-        "slide-up": "slideUp 0.5s ease-out",
-        "bounce-slow": "bounce 3s infinite",
-        "gradient-x": "gradient-x 15s ease infinite",
+        "mesh-drift":  "meshDrift 25s ease infinite alternate",
+        "orb-float":   "orbFloat 9s ease-in-out infinite",
+        "fade-in-up":  "fadeInUp 0.6s cubic-bezier(0.22,1,0.36,1) both",
+        "gradient-x":  "gradientX 15s ease infinite",
       },
 
-      // KEYFRAMES
       keyframes: {
-        fadeIn: {
-          "0%": { opacity: "0" },
-          "100%": { opacity: "1" },
+        meshDrift: {
+          "0%":   { backgroundPosition: "0% 0%" },
+          "100%": { backgroundPosition: "100% 100%" },
         },
-        slideUp: {
-          "0%": { transform: "translateY(100%)", opacity: "0" },
-          "100%": { transform: "translateY(0)", opacity: "1" },
+        orbFloat: {
+          "0%, 100%": { transform: "translateY(0px) scale(1)" },
+          "50%":      { transform: "translateY(-18px) scale(1.04)" },
         },
-        "gradient-x": {
+        fadeInUp: {
+          "0%":   { opacity: "0", transform: "translateY(14px)" },
+          "100%": { opacity: "1", transform: "translateY(0)" },
+        },
+        gradientX: {
           "0%, 100%": {
-            "background-size": "200% 200%",
-            "background-position": "left center",
+            backgroundSize: "200% 200%",
+            backgroundPosition: "left center",
           },
           "50%": {
-            "background-size": "200% 200%",
-            "background-position": "right center",
+            backgroundSize: "200% 200%",
+            backgroundPosition: "right center",
           },
         },
       },
@@ -193,9 +105,21 @@ export default {
       fontFamily: {
         sans: ["Electrolize", "system-ui", "sans-serif"],
       },
+
       spacing: {
         18: "4.5rem",
         88: "22rem",
+      },
+
+      backgroundImage: {
+        "mesh-light":
+          "radial-gradient(at 5%   8%,  rgba(188,212,230,0.70) 0px, transparent 55%)," +
+          "radial-gradient(at 92%  4%,  rgba(197,222,221,0.60) 0px, transparent 48%)," +
+          "radial-gradient(at 45% 96%,  rgba(250,210,225,0.45) 0px, transparent 52%)," +
+          "radial-gradient(at 80% 55%,  rgba(153,193,222,0.35) 0px, transparent 42%)",
+        "mesh-dark":
+          "radial-gradient(ellipse at 12% 18%, rgba(250,210,225,0.13) 0px, transparent 50%)," +
+          "radial-gradient(ellipse at 88% 78%, rgba(197,222,221,0.09) 0px, transparent 50%)",
       },
     },
   },

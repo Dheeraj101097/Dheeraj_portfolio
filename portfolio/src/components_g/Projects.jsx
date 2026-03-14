@@ -1,8 +1,13 @@
-import React from "react";
-import { motion } from "framer-motion";
+import { useRef } from "react";
+import {
+  motion,
+  useMotionValue,
+  useTransform,
+  useSpring,
+} from "framer-motion";
 import {
   ExternalLink,
-  Github,
+  Github as GithubIcon,
   Zap,
   Smartphone,
   Globe,
@@ -12,12 +17,183 @@ import {
   Shield,
   Cpu,
 } from "lucide-react";
-import pis from "../assets/pis.png";
+import pis   from "../assets/pis.png";
 import foodapp from "../assets/foodapp.png";
 import floods from "../assets/floods.png";
-import dssat from "../assets/dssat.png";
-import risd from "../assets/risd.png";
-import riceg from "../assets/riceg.png";
+import dssat  from "../assets/dssat.png";
+import risd   from "../assets/risd.png";
+import riceg  from "../assets/riceg.png";
+
+/* ─── 3-D tilt card ─────────────────────────────────────────────────────── */
+function ProjectCard({ project, index }) {
+  const cardRef = useRef(null);
+
+  const rawX = useMotionValue(0);
+  const rawY = useMotionValue(0);
+
+  const rotateX = useTransform(rawY, [-0.5, 0.5], [7, -7]);
+  const rotateY = useTransform(rawX, [-0.5, 0.5], [-7, 7]);
+
+  const springCfg = { stiffness: 220, damping: 22, mass: 0.8 };
+  const sRotateX = useSpring(rotateX, springCfg);
+  const sRotateY = useSpring(rotateY, springCfg);
+
+  function onMouseMove(e) {
+    const rect = cardRef.current.getBoundingClientRect();
+    rawX.set((e.clientX - rect.left) / rect.width  - 0.5);
+    rawY.set((e.clientY - rect.top)  / rect.height - 0.5);
+  }
+
+  function onMouseLeave() {
+    rawX.set(0);
+    rawY.set(0);
+  }
+
+  return (
+    <motion.div
+      ref={cardRef}
+      onMouseMove={onMouseMove}
+      onMouseLeave={onMouseLeave}
+      variants={{
+        hidden: { opacity: 0, y: 20 },
+        visible: {
+          opacity: 1,
+          y: 0,
+          transition: { duration: 0.55, ease: [0.22, 1, 0.36, 1] },
+        },
+      }}
+      whileHover={{ scale: 1.02 }}
+      style={{
+        rotateX: sRotateX,
+        rotateY: sRotateY,
+        transformStyle: "preserve-3d",
+        perspective: 1000,
+      }}
+      className={`
+        relative rounded-2xl overflow-hidden group
+        glass dark:glass-dark
+        transition-shadow duration-500
+        hover:shadow-[0_12px_48px_rgba(153,193,222,0.28)]
+        dark:hover:shadow-[0_12px_48px_rgba(250,210,225,0.14)]
+      `}
+    >
+      {/* ── Featured badge ─────────────────────────────────────────────── */}
+      {project.featured && (
+        <div className="absolute top-4 left-4 z-20 flex items-center gap-1.5 px-3 py-1 rounded-full bg-primary-300/80 dark:bg-secondary-400/20 border border-primary-300 dark:border-secondary-400/30 text-primary-800 dark:text-secondary-300 text-xs font-semibold backdrop-blur-sm">
+          <Star className="w-3 h-3 fill-current" />
+          Featured
+        </div>
+      )}
+
+      {/* ── Image ──────────────────────────────────────────────────────── */}
+      <div className="relative overflow-hidden h-48">
+        <img
+          src={project.image}
+          alt={project.title}
+          loading="lazy"
+          className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.06]"
+        />
+
+        {/* Gradient overlay */}
+        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+
+        {/* Category icon pill */}
+        <div className="absolute top-4 right-4 p-2.5 rounded-full glass dark:glass-dark text-primary-600 dark:text-primary-300">
+          {project.icon}
+        </div>
+
+        {/* Hover action buttons */}
+        <motion.div
+          className="absolute inset-0 flex items-center justify-center gap-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+          initial={false}
+        >
+          <motion.a
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.95 }}
+            href={project.github}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="p-3 rounded-full glass dark:glass-dark text-gray-700 dark:text-pastel-ivory hover:text-primary-600 dark:hover:text-primary-300 transition-colors"
+          >
+            <GithubIcon size={18} />
+          </motion.a>
+          <motion.a
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.95 }}
+            href={project.live}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="p-3 rounded-full bg-primary-500/90 dark:bg-primary-400/20 border border-primary-400/50 text-white dark:text-primary-200 hover:bg-primary-600/90 transition-colors"
+          >
+            <Eye size={18} />
+          </motion.a>
+        </motion.div>
+      </div>
+
+      {/* ── Card body ──────────────────────────────────────────────────── */}
+      <div className="p-5 relative z-10">
+        {/* Subtle body gradient on hover */}
+        <div className="absolute inset-0 bg-gradient-to-br from-primary-100/30 to-accent-100/20 dark:from-secondary-400/5 dark:to-accent-300/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-b-2xl pointer-events-none" />
+
+        <div className="relative">
+          {/* Category tag + links row */}
+          <div className="flex items-center justify-between mb-3">
+            <span className="px-2.5 py-0.5 rounded-full text-xs font-medium bg-accent-200/60 dark:bg-accent-300/10 text-accent-800 dark:text-accent-300 border border-accent-300/40 dark:border-accent-300/20">
+              {project.category}
+            </span>
+            <div className="flex gap-1.5">
+              <motion.a
+                whileHover={{ scale: 1.12 }}
+                whileTap={{ scale: 0.9 }}
+                href={project.github}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="p-1.5 rounded-full bg-gray-100/60 dark:bg-white/5 text-gray-500 dark:text-gray-400 hover:text-primary-600 dark:hover:text-primary-300 transition-colors"
+              >
+                <GithubIcon size={14} />
+              </motion.a>
+              <motion.a
+                whileHover={{ scale: 1.12 }}
+                whileTap={{ scale: 0.9 }}
+                href={project.live}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="p-1.5 rounded-full bg-primary-100/60 dark:bg-primary-400/10 text-primary-600 dark:text-primary-300 hover:text-primary-700 dark:hover:text-primary-200 transition-colors"
+              >
+                <ExternalLink size={14} />
+              </motion.a>
+            </div>
+          </div>
+
+          {/* Title */}
+          <h3 className="text-base font-bold text-gray-900 dark:text-pastel-ivory mb-2 group-hover:text-primary-700 dark:group-hover:text-primary-300 transition-colors duration-300 leading-snug">
+            {project.title}
+          </h3>
+
+          {/* Description */}
+          <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed mb-4 line-clamp-3">
+            {project.description}
+          </p>
+
+          {/* Tech stack tags */}
+          <div className="flex flex-wrap gap-1.5">
+            {project.tech.map((tech, i) => (
+              <motion.span
+                key={i}
+                whileHover={{ scale: 1.05 }}
+                className="px-2 py-0.5 text-xs rounded-md bg-pastel-sky/50 dark:bg-white/5 text-primary-800 dark:text-primary-300 border border-primary-200/50 dark:border-primary-400/20 cursor-default transition-colors duration-200 hover:bg-primary-200/60 dark:hover:bg-primary-400/15"
+              >
+                {tech}
+              </motion.span>
+            ))}
+          </div>
+        </div>
+      </div>
+    </motion.div>
+  );
+}
+
+/* ─── Section ────────────────────────────────────────────────────────────── */
 const Projects = () => {
   const projects = [
     {
@@ -26,9 +202,9 @@ const Projects = () => {
         "An embedded web server hosted entirely on an ESP32 to control Reconfigurable Intelligent Surfaces (RIS). Features a responsive UI served via SPIFFS, real-time pattern visualization using WebSockets, and secure Wi-Fi provisioning for seamless hardware-software integration.",
       image: risd,
       tech: ["ESP32", "C++", "WebSocket", "HTML/CSS", "SPIFFS"],
-      github: "https://github.com/Dheeraj101097", // Add actual link if available
+      github: "https://github.com/Dheeraj101097",
       live: "#",
-      icon: <Cpu className="w-8 h-8" />,
+      icon: <Cpu className="w-5 h-5" />,
       category: "IoT",
       featured: false,
     },
@@ -39,9 +215,9 @@ const Projects = () => {
       image:
         "https://images.pexels.com/photos/60504/security-protection-anti-virus-software-60504.jpeg?auto=compress&cs=tinysrgb&w=800",
       tech: ["C", "Python", "ESP32", "liboqs", "Cryptography", "FreeRTOS"],
-      github: "https://github.com/Dheeraj101097", // Add actual link if availableand bandwidth overhead
+      github: "https://github.com/Dheeraj101097",
       live: "#",
-      icon: <Shield className="w-8 h-8" />, // Make sure to import Shield from lucide-react
+      icon: <Shield className="w-5 h-5" />,
       category: "Security",
       featured: false,
     },
@@ -53,7 +229,7 @@ const Projects = () => {
       tech: ["React", "Node.js", "ESP32", "MQTT", "MongoDB", "WebSocket"],
       github: "https://github.com/Dheeraj101097/Irrigo-codefinity.git",
       live: "https://irrigo-codefinity.vercel.app/",
-      icon: <Smartphone className="w-8 h-8" />,
+      icon: <Smartphone className="w-5 h-5" />,
       category: "IoT",
       featured: false,
     },
@@ -63,45 +239,45 @@ const Projects = () => {
         "A hybrid research framework combining the DSSAT-Pythia crop simulation model with a CNN-LSTM deep learning network. Calibrated using remote sensing and NASA POWER weather data to generate high-resolution yield estimates for Bundelkhand, India, achieving 98% prediction accuracy (R²).",
       image: dssat,
       tech: ["Python", "DSSAT", "Pythia", "Remote Sensing"],
-      github: "https://github.com/Dheeraj101097", // Add actual link if available
+      github: "https://github.com/Dheeraj101097",
       live: "#",
-      icon: <Leaf className="w-8 h-8" />, // Make sure to import Leaf from lucide-react
+      icon: <Leaf className="w-5 h-5" />,
       category: "ML/AI",
       featured: false,
     },
     {
-      title: "FloodSense - Flood Monitoring System",
+      title: "FloodSense – Flood Monitoring System",
       description:
-        "FloodSense is a patented IoT-based system using Jetson Nano for edge processing. It monitors underpasses in real-time, detects floods & potholes, sends alerts via Firebase, providing alternate route suggestions using MapBox API to enhance commuter safety.",
+        "FloodSense is a patented IoT-based system using Jetson Nano for edge processing. Monitors underpasses in real-time, detects floods & potholes, sends alerts via Firebase, and provides alternate route suggestions using MapBox API.",
       image: floods,
       tech: ["Python", "PyQt5", "OpenCV", "Matplotlib"],
       github: "https://github.com/Dheeraj101097/ricelengthdetector.git",
-      live: " https://flood-monitoring-system.vercel.app/",
-      icon: <Zap className="w-8 h-8" />,
+      live: "https://flood-monitoring-system.vercel.app/",
+      icon: <Zap className="w-5 h-5" />,
       category: "IoT",
       featured: false,
     },
     {
       title: "Rice Grain Length Analysis System",
       description:
-        "A Python-based desktop application with OpenCV for accurate rice grain length analysis and classification, achieving over 95% accuracy using image processing techniques like thresholding, edge detection, and contour analysis, with a user-friendly GUI for quality assessment.",
+        "A Python-based desktop application with OpenCV for accurate rice grain length analysis and classification, achieving over 95% accuracy using image processing techniques like thresholding, edge detection, and contour analysis.",
       image: riceg,
       tech: ["Python", "PyQt5", "OpenCV", "Matplotlib"],
       github: "https://github.com/Dheeraj101097/ricelengthdetector.git",
       live: "https://rice-length-detector.vercel.app/",
-      icon: <Globe className="w-8 h-8" />,
-      category: "Web",
+      icon: <Globe className="w-5 h-5" />,
+      category: "Vision",
       featured: false,
     },
     {
-      title: "FoodZone - AI Recipe App",
+      title: "FoodZone – AI Recipe App",
       description:
-        "A full-stack, AI-enhanced recipe management web app with secure user authentication, React Router-based navigation, full CRUD functionality for 150+ users, and optimized performance with Google AI integration for faster, more accurate recipe searches.",
+        "A full-stack, AI-enhanced recipe management web app with secure user authentication, React Router-based navigation, full CRUD functionality for 150+ users, and optimized performance with Google AI integration for faster recipe searches.",
       image: foodapp,
       tech: ["React", "Express.js", "MongoDB", "Node.js"],
       github: "https://github.com/Dheeraj101097/khanabanao.git",
       live: "https://foodzone-woad.vercel.app",
-      icon: <Globe className="w-8 h-8" />,
+      icon: <Globe className="w-5 h-5" />,
       category: "Web",
       featured: false,
     },
@@ -111,220 +287,49 @@ const Projects = () => {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
-      transition: {
-        staggerChildren: 0.15,
-      },
-    },
-  };
-
-  const cardVariants = {
-    hidden: { opacity: 0, y: 50, rotateX: -15 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      rotateX: 0,
-      transition: {
-        duration: 0.6,
-        ease: "easeOut",
-      },
+      transition: { staggerChildren: 0.1, delayChildren: 0.1 },
     },
   };
 
   return (
-    <section className="py-20 bg-gray-50 dark:bg-gray-950 transition-colors duration-300 relative overflow-hidden">
-      {/* Animated Background (Theme: Green & Teal) */}
+    <section className="py-24 mesh-bg-light dark:mesh-bg-dark transition-colors duration-500 relative overflow-hidden">
+      {/* ── Ambient orbs (dark mode only) ────────────────────────────────── */}
       <div className="absolute inset-0 pointer-events-none">
-        <motion.div
-          animate={{
-            rotate: [0, 360],
-            scale: [1, 1.1, 1],
-          }}
-          transition={{
-            duration: 30,
-            repeat: Infinity,
-            ease: "linear",
-          }}
-          className="absolute top-20 right-20 w-64 h-64 bg-gradient-to-r from-primary-500/10 to-primary-800/10 rounded-full blur-3xl"
-        />
-        <motion.div
-          animate={{
-            rotate: [360, 0],
-            scale: [1.1, 1, 1.1],
-          }}
-          transition={{
-            duration: 25,
-            repeat: Infinity,
-            ease: "linear",
-          }}
-          className="absolute bottom-20 left-20 w-80 h-80 bg-gradient-to-r from-secondary-500/5 to-accent-500/5 rounded-full blur-3xl"
-        />
+        <div className="absolute top-16 right-12 w-80 h-80 orb-rose opacity-0 dark:opacity-100" />
+        <div className="absolute bottom-16 left-12 w-96 h-96 orb-teal opacity-0 dark:opacity-100" />
+
+        {/* Light mode soft blurs */}
+        <div className="absolute top-16 right-12 w-80 h-80 orb-sky opacity-60 dark:opacity-0" />
+        <div className="absolute bottom-16 left-12 w-96 h-96 orb-peach opacity-50 dark:opacity-0" />
       </div>
 
       <div className="container mx-auto px-6 relative z-10">
+        {/* ── Heading ──────────────────────────────────────────────────── */}
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
+          transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-primary-600 via-secondary-500 to-accent-500 bg-clip-text text-transparent animate-gradient-x">
+          <h2 className="text-4xl md:text-5xl font-bold mb-5 heading-gradient">
             Featured Projects
           </h2>
-          <p className="text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
-            A showcase of my recent work spanning web development, IoT systems,
-            and embedded electronics.
+          <p className="text-base text-gray-600 dark:text-gray-400 max-w-xl mx-auto leading-relaxed">
+            A showcase spanning embedded systems, IoT infrastructure, and AI-driven applications.
           </p>
         </motion.div>
 
+        {/* ── Grid ─────────────────────────────────────────────────────── */}
         <motion.div
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true }}
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+          viewport={{ once: true, margin: "-60px" }}
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
         >
           {projects.map((project, index) => (
-            <motion.div
-              key={index}
-              variants={cardVariants}
-              whileHover={{
-                y: -15,
-                rotateY: 5,
-                scale: 1.02,
-              }}
-              // Card Style: Darker panel in dark mode (gray-900)
-              className="bg-white dark:bg-gray-900 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl hover:shadow-primary-500/10 dark:hover:shadow-secondary-500/10 border border-gray-100 dark:border-gray-800 hover:border-primary-200 dark:hover:border-secondary-500/30 transition-all duration-500 group relative"
-              style={{
-                transformStyle: "preserve-3d",
-              }}
-            >
-              {/* Featured Badge (Teal/Mint Gradient) */}
-              {project.featured && (
-                <motion.div
-                  initial={{ scale: 0, rotate: -180 }}
-                  animate={{ scale: 1, rotate: 0 }}
-                  transition={{ delay: index * 0.1 + 0.5, duration: 0.5 }}
-                  className="absolute top-4 left-4 z-20 bg-gradient-to-r from-secondary-400 to-accent-400 text-white px-3 py-1 rounded-full text-sm font-bold flex items-center gap-1 shadow-lg"
-                >
-                  <Star className="w-4 h-4 fill-current" />
-                  Featured
-                </motion.div>
-              )}
-
-              <div className="relative overflow-hidden">
-                <img
-                  src={project.image}
-                  alt={project.title}
-                  loading="lazy"
-                  className="w-full h-48 object-cover transition-transform duration-700 group-hover:scale-115"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-gray-900/80 via-gray-900/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-
-                {/* Floating Icon (Green -> Mint -> Teal cycle) */}
-                <motion.div
-                  className="absolute top-4 right-4 p-3 bg-white/90 dark:bg-gray-800/90 rounded-full shadow-lg backdrop-blur-sm"
-                  whileHover={{
-                    rotate: 360,
-                    scale: 1.1,
-                  }}
-                  transition={{ duration: 0.6 }}
-                >
-                  <motion.div
-                    animate={{
-                      color: ["#1ec988", "#6edbae", "#1b765c", "#1ec988"],
-                    }}
-                    transition={{ duration: 3, repeat: Infinity }}
-                  >
-                    {project.icon}
-                  </motion.div>
-                </motion.div>
-
-                {/* Hover Actions */}
-                <motion.div
-                  className="absolute inset-0 flex items-center justify-center gap-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                  initial={false}
-                >
-                  <motion.a
-                    whileHover={{ scale: 1.2, rotate: 5 }}
-                    whileTap={{ scale: 0.9 }}
-                    href={project.github}
-                    className="p-3 bg-white/90 dark:bg-gray-800/90 text-gray-700 dark:text-gray-200 rounded-full shadow-lg hover:text-primary-600 dark:hover:text-primary-400 transition-colors duration-200"
-                  >
-                    <Github size={20} />
-                  </motion.a>
-                  <motion.a
-                    whileHover={{ scale: 1.2, rotate: -5 }}
-                    whileTap={{ scale: 0.9 }}
-                    href={project.live}
-                    className="p-3 bg-primary-600 text-white rounded-full shadow-lg hover:bg-primary-500 transition-colors duration-200"
-                  >
-                    <Eye size={20} />
-                  </motion.a>
-                </motion.div>
-              </div>
-
-              <div className="p-6 relative">
-                {/* Animated Background Gradient on Card Body */}
-                <div className="absolute inset-0 bg-gradient-to-br from-primary-500/5 to-secondary-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-b-2xl" />
-
-                <div className="relative z-10">
-                  <div className="flex items-center justify-between mb-4">
-                    <motion.span
-                      className="px-3 py-1 bg-primary-50 dark:bg-primary-900/30 text-primary-700 dark:text-primary-300 rounded-full text-sm font-medium border border-primary-100 dark:border-primary-800"
-                      whileHover={{ scale: 1.05 }}
-                    >
-                      {project.category}
-                    </motion.span>
-                    <div className="flex gap-2">
-                      <motion.a
-                        whileHover={{ scale: 1.15, rotate: 10 }}
-                        whileTap={{ scale: 0.9 }}
-                        href={project.github}
-                        className="p-2 bg-gray-100 dark:bg-gray-800 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 text-gray-600 dark:text-gray-400 transition-colors duration-200"
-                      >
-                        <Github size={16} />
-                      </motion.a>
-                      <motion.a
-                        whileHover={{ scale: 1.15, rotate: -10 }}
-                        whileTap={{ scale: 0.9 }}
-                        href={project.live}
-                        className="p-2 bg-primary-100 dark:bg-primary-900/50 text-primary-600 dark:text-primary-400 rounded-full hover:bg-primary-200 dark:hover:bg-primary-900 transition-colors duration-200"
-                      >
-                        <ExternalLink size={16} />
-                      </motion.a>
-                    </div>
-                  </div>
-
-                  <motion.h3
-                    className="text-xl font-bold text-gray-900 dark:text-gray-100 mb-3 group-hover:text-primary-600 dark:group-hover:text-secondary-400 transition-colors duration-300"
-                    whileHover={{ x: 5 }}
-                    transition={{ duration: 0.2 }}
-                  >
-                    {project.title}
-                  </motion.h3>
-                  <p className="text-gray-600 dark:text-gray-400 mb-4 leading-relaxed">
-                    {project.description}
-                  </p>
-
-                  <div className="flex flex-wrap gap-2">
-                    {project.tech.map((tech, techIndex) => (
-                      <motion.span
-                        key={techIndex}
-                        whileHover={{
-                          scale: 1.1,
-                          backgroundColor: "#1b765c", // Secondary (Teal) Hover
-                          color: "#FFFFFF",
-                        }}
-                        className="px-2 py-1 bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-300 rounded-lg text-xs font-medium cursor-pointer transition-all duration-200 border border-transparent hover:border-secondary-400"
-                      >
-                        {tech}
-                      </motion.span>
-                    ))}
-                  </div>
-                </div>
-              </div>
-            </motion.div>
+            <ProjectCard key={index} project={project} index={index} />
           ))}
         </motion.div>
       </div>
