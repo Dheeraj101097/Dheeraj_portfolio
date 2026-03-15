@@ -33,23 +33,23 @@ const categories = [
   {
     id: "lang",
     title: "Languages",
-    accentLight: "rgba(188,212,230,0.35)",
-    accentDark: "rgba(153,193,222,0.15)",
+    accentLight: "rgba(240,101,67, 0.12)",
+    accentDark: "rgba(240,101,67, 0.14)",
     skills: [
       { name: "C / C++", icon: <SiCplusplus />, color: "#659AD2" },
-      { name: "Embedded C", icon: <Cpu size={18} />, color: "#A8B9CC" },
+      { name: "Embedded C", icon: <Cpu size={18} />, color: "#706f6e" },
       { name: "Python", icon: <SiPython />, color: "#3776AB" },
-      { name: "JavaScript", icon: <SiJavascript />, color: "#F7DF1E" },
+      { name: "JavaScript", icon: <SiJavascript />, color: "#D4A800" },
     ],
   },
   {
     id: "embedded",
     title: "Embedded Systems",
-    accentLight: "rgba(197,222,221,0.35)",
-    accentDark: "rgba(197,222,221,0.12)",
+    accentLight: "rgba(240,157,81, 0.12)",
+    accentDark: "rgba(240,157,81, 0.14)",
     skills: [
       { name: "ESP32 / ESP-IDF", icon: <SiEspressif />, color: "#E7352C" },
-      { name: "FreeRTOS", icon: <Timer size={18} />, color: "#7aafc8" },
+      { name: "FreeRTOS", icon: <Timer size={18} />, color: "#f09d51" },
       { name: "Arduino", icon: <SiArduino />, color: "#00878A" },
       { name: "Raspberry Pi", icon: <SiRaspberrypi />, color: "#C51A4A" },
     ],
@@ -57,55 +57,51 @@ const categories = [
   {
     id: "iot",
     title: "IoT & Protocols",
-    accentLight: "rgba(214,226,233,0.40)",
-    accentDark: "rgba(188,212,230,0.12)",
+    accentLight: "rgba(240,101,67, 0.08)",
+    accentDark: "rgba(240,101,67, 0.10)",
     skills: [
-      { name: "MQTT", icon: <SiMqtt />, color: "#660066" },
-      // { name: "AWS IoT", icon: <SiAmazonwebservices />, color: "#FF9900" },
-      { name: "Wi-Fi / BLE", icon: <Wifi size={18} />, color: "#5e96b0" },
-      { name: "WebSocket", icon: <Globe size={18} />, color: "#6eb4b2" },
+      { name: "MQTT", icon: <SiMqtt />, color: "#8b4ca8" },
+      // { name: "AWS IoT",     icon: <SiAmazonwebservices />, color: "#FF9900" },
+      { name: "Wi-Fi / BLE", icon: <Wifi size={18} />, color: "#f06543" },
+      { name: "WebSocket", icon: <Globe size={18} />, color: "#f09d51" },
     ],
   },
   {
     id: "hardware",
     title: "Hardware & PCB",
-    accentLight: "rgba(250,210,225,0.30)",
-    accentDark: "rgba(250,210,225,0.10)",
+    accentLight: "rgba(240,157,81, 0.10)",
+    accentDark: "rgba(240,157,81, 0.12)",
     skills: [
-      { name: "PCB Design", icon: <Layers size={18} />, color: "#bcd4e6" },
+      { name: "PCB Design", icon: <Layers size={18} />, color: "#f06543" },
       { name: "Altium Designer", icon: <Cpu size={18} />, color: "#A5915B" },
-      { name: "Proteus", icon: <Radio size={18} />, color: "#7aafc8" },
-      { name: "Oscilloscope", icon: <Zap size={18} />, color: "#c5dedd" },
+      { name: "Proteus", icon: <Radio size={18} />, color: "#706f6e" },
+      { name: "Oscilloscope", icon: <Zap size={18} />, color: "#f09d51" },
     ],
   },
   {
     id: "tools",
     title: "Tools & Platforms",
-    accentLight: "rgba(219,231,228,0.40)",
-    accentDark: "rgba(197,222,221,0.10)",
+    accentLight: "rgba(240,101,67, 0.09)",
+    accentDark: "rgba(240,101,67, 0.11)",
     skills: [
       { name: "Git", icon: <SiGit />, color: "#F05032" },
-      { name: "GitHub", icon: <SiGithub />, color: "#333333" },
+      { name: "GitHub", icon: <SiGithub />, color: "#706f6e" },
       // { name: "VS Code", icon: <SiVisualstudiocode />, color: "#007ACC" },
-      { name: "Linux", icon: <SiLinux />, color: "#FCC624" },
+      { name: "Linux", icon: <SiLinux />, color: "#C9A000" },
       { name: "Docker", icon: <SiDocker />, color: "#2496ED" },
     ],
   },
   {
     id: "ai",
     title: "AI / Advanced",
-    accentLight: "rgba(237,220,210,0.35)",
-    accentDark: "rgba(237,220,210,0.10)",
+    accentLight: "rgba(240,157,81, 0.11)",
+    accentDark: "rgba(240,157,81, 0.13)",
     skills: [
-      {
-        name: "Edge AI / TensorFlow",
-        icon: <SiTensorflow />,
-        color: "#FF6F00",
-      },
+      { name: "TensorFlow", icon: <SiTensorflow />, color: "#FF6F00" },
       { name: "OpenCV", icon: <SiOpencv />, color: "#5C3EE8" },
-      { name: "RTOS", icon: <Timer size={18} />, color: "#7aafc8" },
-      { name: "DSP", icon: <BrainCircuit size={18} />, color: "#99c1de" },
-      { name: "OTA Updates", icon: <RefreshCw size={18} />, color: "#6eb4b2" },
+      { name: "RTOS", icon: <Timer size={18} />, color: "#f09d51" },
+      { name: "DSP", icon: <BrainCircuit size={18} />, color: "#f06543" },
+      { name: "OTA Updates", icon: <RefreshCw size={18} />, color: "#706f6e" },
     ],
   },
 ];
@@ -120,11 +116,10 @@ function SkillChip({ skill, delay }) {
       transition={{ duration: 0.4, delay, ease: [0.22, 1, 0.36, 1] }}
       whileHover={{ y: -3, scale: 1.04 }}
       className="flex items-center gap-2 px-3 py-2 rounded-xl
-        bg-white/50 dark:bg-white/[0.04]
-        border border-white/70 dark:border-white/[0.07]
-        backdrop-blur-sm
-        shadow-sm hover:shadow-md
-        dark:hover:border-white/[0.13]
+        bg-silver/60 dark:bg-white/[0.05]
+        border border-silver dark:border-white/[0.08]
+        hover:border-primary-400/50 dark:hover:border-primary-500/30
+        backdrop-blur-sm shadow-sm hover:shadow-md
         transition-all duration-300 cursor-default group"
     >
       {/* Icon with brand color */}
@@ -134,7 +129,7 @@ function SkillChip({ skill, delay }) {
       >
         {skill.icon}
       </span>
-      <span className="text-xs font-medium text-gray-700 dark:text-gray-300 whitespace-nowrap">
+      <span className="text-xs font-medium text-gray-600 dark:text-gray-200 whitespace-nowrap">
         {skill.name}
       </span>
     </motion.div>
@@ -195,10 +190,10 @@ const Skills = () => (
   <section className="py-24 mesh-bg-light dark:mesh-bg-dark transition-colors duration-500 relative overflow-hidden">
     {/* Ambient orbs */}
     <div className="absolute inset-0 pointer-events-none">
-      <div className="absolute top-10 left-8  w-72 h-72 orb-sky  opacity-50 dark:opacity-0" />
-      <div className="absolute bottom-10 right-8 w-80 h-80 orb-peach opacity-40 dark:opacity-0" />
-      <div className="absolute top-10 left-8  w-72 h-72 orb-rose opacity-0 dark:opacity-100" />
-      <div className="absolute bottom-10 right-8 w-80 h-80 orb-teal opacity-0 dark:opacity-100" />
+      <div className="absolute top-10  left-8  w-72 h-72 orb-sand  opacity-60 dark:opacity-0" />
+      <div className="absolute bottom-10 right-8 w-80 h-80 orb-silver opacity-50 dark:opacity-0" />
+      <div className="absolute top-10  left-8  w-72 h-72 orb-coral opacity-0 dark:opacity-100" />
+      <div className="absolute bottom-10 right-8 w-80 h-80 orb-amber opacity-0 dark:opacity-100" />
     </div>
 
     <div className="container mx-auto px-4 sm:px-6 relative z-10">

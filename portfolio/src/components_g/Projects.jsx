@@ -113,7 +113,7 @@ function ProjectCard({ project, index }) {
             href={project.github}
             target="_blank"
             rel="noopener noreferrer"
-            className="p-3 rounded-full glass dark:glass-dark text-gray-700 dark:text-pastel-ivory hover:text-primary-600 dark:hover:text-primary-300 transition-colors"
+            className="p-3 rounded-full glass dark:glass-dark text-gray-700 dark:text-gray-100 hover:text-primary-600 dark:hover:text-primary-300 transition-colors"
           >
             <GithubIcon size={18} />
           </motion.a>
@@ -166,7 +166,7 @@ function ProjectCard({ project, index }) {
           </div>
 
           {/* Title */}
-          <h3 className="text-base font-bold text-gray-900 dark:text-pastel-ivory mb-2 group-hover:text-primary-700 dark:group-hover:text-primary-300 transition-colors duration-300 leading-snug">
+          <h3 className="text-base font-bold text-gray-900 dark:text-gray-100 mb-2 group-hover:text-primary-700 dark:group-hover:text-primary-300 transition-colors duration-300 leading-snug">
             {project.title}
           </h3>
 
@@ -181,7 +181,7 @@ function ProjectCard({ project, index }) {
               <motion.span
                 key={i}
                 whileHover={{ scale: 1.05 }}
-                className="px-2 py-0.5 text-xs rounded-md bg-pastel-sky/50 dark:bg-white/5 text-primary-800 dark:text-primary-300 border border-primary-200/50 dark:border-primary-400/20 cursor-default transition-colors duration-200 hover:bg-primary-200/60 dark:hover:bg-primary-400/15"
+                className="px-2 py-0.5 text-xs rounded-md bg-silver/50 dark:bg-white/5 text-primary-800 dark:text-primary-300 border border-primary-200/50 dark:border-primary-400/20 cursor-default transition-colors duration-200 hover:bg-primary-200/60 dark:hover:bg-primary-400/15"
               >
                 {tech}
               </motion.span>
@@ -295,12 +295,12 @@ const Projects = () => {
     <section className="py-24 mesh-bg-light dark:mesh-bg-dark transition-colors duration-500 relative overflow-hidden">
       {/* ── Ambient orbs (dark mode only) ────────────────────────────────── */}
       <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-16 right-12 w-80 h-80 orb-rose opacity-0 dark:opacity-100" />
-        <div className="absolute bottom-16 left-12 w-96 h-96 orb-teal opacity-0 dark:opacity-100" />
+        <div className="absolute top-16 right-12 w-80 h-80 orb-coral opacity-0 dark:opacity-100" />
+        <div className="absolute bottom-16 left-12 w-96 h-96 orb-amber opacity-0 dark:opacity-100" />
 
         {/* Light mode soft blurs */}
-        <div className="absolute top-16 right-12 w-80 h-80 orb-sky opacity-60 dark:opacity-0" />
-        <div className="absolute bottom-16 left-12 w-96 h-96 orb-peach opacity-50 dark:opacity-0" />
+        <div className="absolute top-16 right-12 w-80 h-80 orb-sand opacity-60 dark:opacity-0" />
+        <div className="absolute bottom-16 left-12 w-96 h-96 orb-silver opacity-50 dark:opacity-0" />
       </div>
 
       <div className="container mx-auto px-6 relative z-10">

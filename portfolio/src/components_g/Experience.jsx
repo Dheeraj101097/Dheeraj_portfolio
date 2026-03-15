@@ -188,7 +188,7 @@ const Experience = () => {
               )}
 
               {/* Timeline Dot (Green/Teal Glow) */}
-              <div className="absolute left-4 top-6 w-4 h-4 rounded-full z-10 bg-gray-50 dark:bg-gray-950 border-2 border-primary-500 shadow-[0_0_10px_rgba(30,201,136,0.5)] group-hover:border-secondary-500 group-hover:shadow-[0_0_15px_rgba(27,118,92,0.5)] transition-all duration-300" />
+              <div className="absolute left-4 top-6 w-4 h-4 rounded-full z-10 bg-sand dark:bg-gray-900 border-2 border-primary-500 shadow-[0_0_10px_rgba(240,101,67,0.35)] group-hover:border-secondary-500 group-hover:shadow-[0_0_15px_rgba(240,157,81,0.40)] transition-all duration-300" />
 
               {/* Content Card */}
               <div className="ml-16 bg-white dark:bg-gray-900 rounded-2xl p-6 md:p-8 shadow-lg border border-gray-100 dark:border-gray-800 hover:border-primary-200 dark:hover:border-secondary-500/30 transition-all duration-300">
@@ -298,7 +298,7 @@ const Experience = () => {
               className="relative w-full max-w-lg bg-white dark:bg-gray-900 rounded-t-2xl sm:rounded-2xl shadow-2xl overflow-hidden max-h-[85vh] flex flex-col border border-gray-200 dark:border-gray-800"
             >
               {/* Header */}
-              <div className="p-6 border-b border-gray-100 dark:border-gray-800 bg-gray-50 dark:bg-gray-950 flex justify-between items-start sticky top-0 z-10">
+              <div className="p-6 border-b border-gray-100 dark:border-gray-800 bg-sand dark:bg-gray-900 flex justify-between items-start sticky top-0 z-10">
                 <div>
                   <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-1">
                     {selectedExp.title}

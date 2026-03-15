@@ -323,9 +323,9 @@ const Hero = () => {
               <motion.span
                 animate={{
                   textShadow: [
-                    "0 0 0px rgba(30, 201, 136, 0)", // Primary Green Glow
-                    "0 0 20px rgba(30, 201, 136, 0.5)",
-                    "0 0 0px rgba(30, 201, 136, 0)",
+                    "0 0 0px rgba(240, 101, 67, 0)",
+                    "0 0 24px rgba(240, 101, 67, 0.55)",
+                    "0 0 0px rgba(240, 101, 67, 0)",
                   ],
                 }}
                 transition={{ duration: 2, repeat: Infinity }}
@@ -344,7 +344,7 @@ const Hero = () => {
               {"Aspiring "}
               <motion.span
                 animate={{
-                  color: ["#1ec988", "#6edbae", "#1b765c", "#1ec988"],
+                  color: ["#f06543", "#f09d51", "#f06543"],
                 }}
                 transition={{ duration: 4, repeat: Infinity }}
               >
@@ -353,9 +353,9 @@ const Hero = () => {
               {" & "}
               <motion.span
                 animate={{
-                  color: ["#1b765c", "#1ec988", "#6edbae", "#1b765c"],
+                  color: ["#f09d51", "#f06543", "#f09d51"],
                 }}
-                transition={{ duration: 4, repeat: Infinity, delay: 3 }}
+                transition={{ duration: 4, repeat: Infinity, delay: 2 }}
               >
                 IoT
               </motion.span>

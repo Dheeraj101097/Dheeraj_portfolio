@@ -39,7 +39,7 @@ function App() {
   return (
     <div
       className={`min-h-screen transition-colors duration-500 ${
-        darkMode ? "dark bg-gray-950 text-pastel-ivory" : "bg-pastel-ivory text-gray-850"
+        darkMode ? "dark bg-gray-900 text-gray-100" : "bg-sand text-charcoal"
       }`}
     >
       <Header darkMode={darkMode} toggleDarkMode={toggleDarkMode} />

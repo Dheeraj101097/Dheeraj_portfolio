@@ -4,7 +4,7 @@ import { Sparkles } from "lucide-react";
 
 const Footer = () => {
   return (
-    <footer className="bg-pastel-ivory dark:bg-gray-950 text-gray-800 dark:text-pastel-ivory py-12 relative overflow-hidden border-t border-pastel-sky/50 dark:border-white/[0.06] transition-colors duration-500">
+    <footer className="bg-sand dark:bg-gray-900 text-charcoal dark:text-silver py-12 relative overflow-hidden border-t border-gray-300/60 dark:border-white/[0.06] transition-colors duration-500">
       {/* Animated Background */}
       <div className="absolute inset-0 pointer-events-none">
         {/* Blob 1: Primary Green */}

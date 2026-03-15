@@ -5,76 +5,85 @@ export default {
   theme: {
     extend: {
       colors: {
-        // ─── Pastel mesh palette (raw tokens) ─────────────────────────────
-        pastel: {
-          peach:  "#eddcd2",
-          cream:  "#fff1e6",
-          blush:  "#fde2e4",
-          rose:   "#fad2e1",
-          teal:   "#c5dedd",
-          sage:   "#dbe7e4",
-          ivory:  "#f0efeb",
-          sky:    "#d6e2e9",
-          steel:  "#bcd4e6",
-          slate:  "#99c1de",
-        },
+        // ── Core palette ──────────────────────────────────────────────────
+        // #f06543  coral-orange  → primary CTA / active / highlights
+        // #f09d51  warm amber    → secondary hover / tags / badges
+        // #e8e9eb  silver        → light surfaces / dark-mode text
+        // #e0dfd5  warm sand     → light page background
+        // #313638  charcoal      → dark page background / light-mode text
 
-        // ─── Primary: steel-blue family (interactive, links, highlights) ──
+        // ── Named raw tokens ─────────────────────────────────────────────
+        coral:     "#f06543",
+        amber:     "#f09d51",
+        silver:    "#e8e9eb",
+        sand:      "#e0dfd5",
+        charcoal:  "#313638",
+
+        // ── Primary: coral-orange (#f06543) ───────────────────────────────
         primary: {
-          50:  "#f4f9fd",
-          100: "#e6f2f8",
-          200: "#d6e2e9",   // sky
-          300: "#bcd4e6",   // steel
-          400: "#99c1de",   // slate
-          500: "#7aafc8",   // mid tone
-          600: "#5e96b0",   // deeper, text-safe
-          700: "#4a7d96",
-          800: "#3a6478",
-          900: "#2c4e5e",
+          50:  "#fff2ee",
+          100: "#ffe1d8",
+          200: "#ffc3b0",
+          300: "#ff9d82",
+          400: "#f67c5e",
+          500: "#f06543",   // ← base
+          600: "#d14930",
+          700: "#aa3824",
+          800: "#842b1b",
+          900: "#612012",
         },
 
-        // ─── Secondary: warm pastel family (rose / peach) ─────────────────
+        // ── Secondary: warm amber (#f09d51) ──────────────────────────────
         secondary: {
-          50:  "#fffaf8",
-          100: "#fff1e6",   // cream
-          200: "#eddcd2",   // peach
-          300: "#fde2e4",   // blush
-          400: "#fad2e1",   // rose ← dark-mode glow orb
-          500: "#f0c4d0",
-          600: "#d4a0b4",
-          700: "#b87c98",
-          800: "#9c5878",
-          900: "#7a3858",
+          50:  "#fff8ee",
+          100: "#fdefd6",
+          200: "#fad9a8",
+          300: "#f7bf77",
+          400: "#f4ac5e",
+          500: "#f09d51",   // ← base
+          600: "#d07c32",
+          700: "#aa6024",
+          800: "#844a1b",
+          900: "#613614",
         },
 
-        // ─── Accent: teal / sage family (borders, tags, success) ──────────
+        // ── Accent: shared warm mid-tone for borders/tags ────────────────
         accent: {
-          50:  "#f2fbfb",
-          100: "#e0f4f2",
-          200: "#dbe7e4",   // sage
-          300: "#c5dedd",   // teal ← dark-mode glow orb
-          400: "#a8d0ce",
-          500: "#8bc2c0",
-          600: "#6eb4b2",
-          700: "#52a0a0",
-          800: "#3e8888",
-          900: "#2c7070",
+          50:  "#faf6f3",
+          100: "#f2ebe4",
+          200: "#e0dfd5",   // sand ← light bg
+          300: "#ccc9be",
+          400: "#b5b2a8",
+          500: "#9a9790",
+          600: "#7e7b75",
+          700: "#63615c",
+          800: "#4b4946",
+          900: "#333230",
         },
 
-        // ─── Neutral grays (dark backgrounds) ─────────────────────────────
+        // ── Neutral grays (warm undertone) ───────────────────────────────
         gray: {
-          850: "#171717",
-          900: "#111111",
-          950: "#000000",   // pure black for dark mode
+          50:  "#f5f5f3",
+          100: "#e8e9eb",   // silver ← light surface
+          200: "#d4d4d2",
+          300: "#b8b8b6",
+          400: "#929190",
+          500: "#706f6e",
+          600: "#5a5958",
+          700: "#474645",
+          800: "#3c3b3a",
+          850: "#353434",
+          900: "#313638",   // charcoal ← dark bg
+          950: "#1e2022",   // near-black
         },
       },
 
-      // ─── Animations ───────────────────────────────────────────────────────
+      // ── Animations ───────────────────────────────────────────────────────
       animation: {
-        "mesh-drift":  "meshDrift 25s ease infinite alternate",
-        "orb-float":   "orbFloat 9s ease-in-out infinite",
-        "fade-in-up":  "fadeInUp 0.6s cubic-bezier(0.22,1,0.36,1) both",
-        "gradient-x":  "gradientX 15s ease infinite",
+        "mesh-drift": "meshDrift 28s ease infinite alternate",
+        "orb-float":  "orbFloat 9s ease-in-out infinite",
+        "fade-in-up": "fadeInUp 0.6s cubic-bezier(0.22,1,0.36,1) both",
+        "gradient-x": "gradientX 15s ease infinite",
       },
 
       keyframes: {
@@ -91,14 +100,8 @@ export default {
           "100%": { opacity: "1", transform: "translateY(0)" },
         },
         gradientX: {
-          "0%, 100%": {
-            backgroundSize: "200% 200%",
-            backgroundPosition: "left center",
-          },
-          "50%": {
-            backgroundSize: "200% 200%",
-            backgroundPosition: "right center",
-          },
+          "0%, 100%": { backgroundSize: "200% 200%", backgroundPosition: "left center" },
+          "50%":      { backgroundSize: "200% 200%", backgroundPosition: "right center" },
         },
       },
 
@@ -109,17 +112,6 @@ export default {
       spacing: {
         18: "4.5rem",
         88: "22rem",
-      },
-
-      backgroundImage: {
-        "mesh-light":
-          "radial-gradient(at 5%   8%,  rgba(188,212,230,0.70) 0px, transparent 55%)," +
-          "radial-gradient(at 92%  4%,  rgba(197,222,221,0.60) 0px, transparent 48%)," +
-          "radial-gradient(at 45% 96%,  rgba(250,210,225,0.45) 0px, transparent 52%)," +
-          "radial-gradient(at 80% 55%,  rgba(153,193,222,0.35) 0px, transparent 42%)",
-        "mesh-dark":
-          "radial-gradient(ellipse at 12% 18%, rgba(250,210,225,0.13) 0px, transparent 50%)," +
-          "radial-gradient(ellipse at 88% 78%, rgba(197,222,221,0.09) 0px, transparent 50%)",
       },
     },
   },

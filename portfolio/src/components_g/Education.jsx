@@ -112,7 +112,7 @@ const Education = () => {
               {/* Central Node (Green Dot) */}
               <div className="absolute left-8 md:left-1/2 transform -translate-x-1/2 flex items-center justify-center z-10">
                 <motion.div
-                  className="w-10 h-10 md:w-14 md:h-14 rounded-full bg-gray-50 dark:bg-gray-900 border-2 border-secondary-500 flex items-center justify-center shadow-[0_0_15px_rgba(27,118,92,0.4)]"
+                  className="w-10 h-10 md:w-14 md:h-14 rounded-full bg-sand dark:bg-gray-900 border-2 border-secondary-500 flex items-center justify-center shadow-[0_0_15px_rgba(240,101,67,0.35)]"
                   whileHover={{ scale: 1.2, rotate: 360 }}
                   transition={{ duration: 0.5 }}
                 >

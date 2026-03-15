@@ -2,165 +2,153 @@
 @tailwind components;
 @tailwind utilities;
 
-/* ─── Mesh-gradient keyframe (used by .mesh-bg-light) ──────────────────── */
+/* ─── Keyframes ─────────────────────────────────────────────────────────── */
 @keyframes meshDrift {
   0%   { background-position: 0% 0%; }
   100% { background-position: 100% 100%; }
 }
-
-@layer base {
-  /* Light mode root tokens */
-  :root {
-    --color-bg:      #f0efeb;
-    --color-surface: rgba(255, 255, 255, 0.55);
-    --color-text:    #171717;
-    --color-muted:   #52616b;
-    --color-border:  rgba(255, 255, 255, 0.65);
-  }
-
-  /* Dark mode root tokens */
-  .dark {
-    --color-bg:      #000000;
-    --color-surface: rgba(255, 255, 255, 0.03);
-    --color-text:    #f0efeb;
-    --color-muted:   #a0a8b0;
-    --color-border:  rgba(255, 255, 255, 0.07);
-  }
-
-  html {
-    scroll-behavior: smooth;
-  }
+@keyframes orbFloat {
+  0%,  100% { transform: translateY(0px) scale(1); }
+  50%        { transform: translateY(-18px) scale(1.04); }
 }
 
+/* ─── Design tokens ─────────────────────────────────────────────────────── */
+@layer base {
+  :root {
+    --c-bg:       #e0dfd5;   /* sand  */
+    --c-surface:  #e8e9eb;   /* silver */
+    --c-text:     #313638;   /* charcoal */
+    --c-muted:    #706f6e;
+    --c-primary:  #f06543;   /* coral */
+    --c-secondary:#f09d51;   /* amber */
+  }
+  .dark {
+    --c-bg:       #313638;   /* charcoal */
+    --c-surface:  #3c3b3a;
+    --c-text:     #e8e9eb;   /* silver */
+    --c-muted:    #929190;
+    --c-primary:  #f06543;
+    --c-secondary:#f09d51;
+  }
+  html { scroll-behavior: smooth; }
+}
+
+/* ─── Utility layer ─────────────────────────────────────────────────────── */
 @layer utilities {
-  /* ── Section backgrounds ─────────────────────────────────────────────── */
 
+  /* ── Section backgrounds ────────────────────────────────────────────── */
+
+  /* Light: warm sand base + coral / amber / silver radial orbs */
   .mesh-bg-light {
-    background-color: #f0efeb;
+    background-color: #e0dfd5;
     background-image:
-      radial-gradient(at 5%   8%,  rgba(188, 212, 230, 0.70) 0px, transparent 55%),
-      radial-gradient(at 92%  4%,  rgba(197, 222, 221, 0.60) 0px, transparent 48%),
-      radial-gradient(at 45% 96%,  rgba(250, 210, 225, 0.45) 0px, transparent 52%),
-      radial-gradient(at 80% 55%,  rgba(153, 193, 222, 0.35) 0px, transparent 42%);
+      radial-gradient(at  6%  8%,  rgba(240,101,67,  0.18) 0px, transparent 52%),
+      radial-gradient(at 90%  6%,  rgba(240,157,81,  0.15) 0px, transparent 48%),
+      radial-gradient(at 48% 95%,  rgba(232,233,235, 0.65) 0px, transparent 55%),
+      radial-gradient(at 80% 52%,  rgba(240,101,67,  0.10) 0px, transparent 42%);
     background-size: 200% 200%;
-    animation: meshDrift 25s ease infinite alternate;
+    animation: meshDrift 28s ease infinite alternate;
   }
 
+  /* Dark: charcoal base + subtle coral / amber glows */
   .mesh-bg-dark {
-    background-color: #000000;
+    background-color: #313638;
     background-image:
-      radial-gradient(ellipse at 12% 18%, rgba(250, 210, 225, 0.13) 0px, transparent 50%),
-      radial-gradient(ellipse at 88% 78%, rgba(197, 222, 221, 0.09) 0px, transparent 50%);
+      radial-gradient(ellipse at 10% 15%, rgba(240,101,67, 0.14) 0px, transparent 50%),
+      radial-gradient(ellipse at 88% 80%, rgba(240,157,81, 0.10) 0px, transparent 50%),
+      radial-gradient(ellipse at 50% 50%, rgba(240,101,67, 0.04) 0px, transparent 65%);
   }
 
-  /* ── Glassmorphism cards ─────────────────────────────────────────────── */
+  /* ── Glassmorphism ──────────────────────────────────────────────────── */
 
-  /* Light glass — translucent white panel */
+  /* Light glass — silver-sand frosted panel */
   .glass {
-    background: rgba(255, 255, 255, 0.55);
-    backdrop-filter: blur(18px) saturate(180%);
-    -webkit-backdrop-filter: blur(18px) saturate(180%);
+    background: rgba(232, 233, 235, 0.58);
+    backdrop-filter: blur(18px) saturate(160%);
+    -webkit-backdrop-filter: blur(18px) saturate(160%);
     border: 1px solid rgba(255, 255, 255, 0.72);
     box-shadow:
-      0 2px 8px  rgba(0, 0, 0, 0.05),
-      0 8px 32px rgba(0, 0, 0, 0.07),
-      inset 0 1px 0 rgba(255, 255, 255, 0.9);
+      0 2px 8px  rgba(49, 54, 56, 0.06),
+      0 8px 32px rgba(49, 54, 56, 0.08),
+      inset 0 1px 0 rgba(255, 255, 255, 0.88);
   }
 
-  /* Heavier light glass for modal/featured panels */
+  /* Heavy light glass — for hero overlays / modals */
   .glass-heavy {
-    background: rgba(255, 255, 255, 0.75);
-    backdrop-filter: blur(24px) saturate(200%);
-    -webkit-backdrop-filter: blur(24px) saturate(200%);
+    background: rgba(232, 233, 235, 0.78);
+    backdrop-filter: blur(24px) saturate(180%);
+    -webkit-backdrop-filter: blur(24px) saturate(180%);
     border: 1px solid rgba(255, 255, 255, 0.85);
     box-shadow:
-      0 4px 12px rgba(0, 0, 0, 0.06),
-      0 12px 48px rgba(0, 0, 0, 0.10),
+      0 4px 12px rgba(49, 54, 56, 0.08),
+      0 16px 48px rgba(49, 54, 56, 0.12),
       inset 0 1px 0 rgba(255, 255, 255, 0.95);
   }
 
-  /* Dark glass — pure black with whisper-white tint */
+  /* Dark glass — charcoal-tinted with coral glow edge */
   .glass-dark {
-    background: rgba(255, 255, 255, 0.03);
-    backdrop-filter: blur(20px) saturate(140%);
-    -webkit-backdrop-filter: blur(20px) saturate(140%);
-    border: 1px solid rgba(255, 255, 255, 0.07);
+    background: rgba(255, 255, 255, 0.04);
+    backdrop-filter: blur(20px) saturate(130%);
+    -webkit-backdrop-filter: blur(20px) saturate(130%);
+    border: 1px solid rgba(240, 101, 67, 0.10);
     box-shadow:
-      0 4px 16px rgba(0, 0, 0, 0.55),
-      0 12px 40px rgba(0, 0, 0, 0.40),
-      inset 0 1px 0 rgba(255, 255, 255, 0.05);
+      0 4px 20px rgba(0, 0, 0, 0.45),
+      0 12px 40px rgba(0, 0, 0, 0.35),
+      inset 0 1px 0 rgba(240, 101, 67, 0.06);
   }
 
-  /* ── Pastel glow orbs (absolute positioned, pointer-events-none) ─────── */
+  /* ── Pastel glow orbs ───────────────────────────────────────────────── */
 
-  .orb-rose {
-    background: radial-gradient(circle, rgba(250, 210, 225, 0.85) 0%, transparent 70%);
-    filter: blur(70px);
+  .orb-coral {
+    background: radial-gradient(circle, rgba(240,101,67,  0.80) 0%, transparent 70%);
+    filter: blur(72px);
     animation: orbFloat 9s ease-in-out infinite;
   }
-
-  .orb-teal {
-    background: radial-gradient(circle, rgba(197, 222, 221, 0.80) 0%, transparent 70%);
-    filter: blur(70px);
+  .orb-amber {
+    background: radial-gradient(circle, rgba(240,157,81,  0.75) 0%, transparent 70%);
+    filter: blur(72px);
     animation: orbFloat 11s ease-in-out infinite reverse;
   }
-
-  .orb-sky {
-    background: radial-gradient(circle, rgba(153, 193, 222, 0.65) 0%, transparent 70%);
+  .orb-sand {
+    background: radial-gradient(circle, rgba(224,223,213, 0.90) 0%, transparent 70%);
     filter: blur(65px);
     animation: orbFloat 13s ease-in-out infinite;
   }
-
-  .orb-peach {
-    background: radial-gradient(circle, rgba(237, 220, 210, 0.80) 0%, transparent 70%);
+  .orb-silver {
+    background: radial-gradient(circle, rgba(232,233,235, 0.85) 0%, transparent 70%);
     filter: blur(65px);
     animation: orbFloat 10s ease-in-out infinite reverse;
   }
 
-  /* ── Pastel gradient borders (via background-clip trick) ─────────────── */
-
-  .pastel-border {
+  /* ── Gradient border (1 px pastel ring) ────────────────────────────── */
+  .warm-border {
     position: relative;
   }
-
-  .pastel-border::before {
+  .warm-border::before {
     content: "";
     position: absolute;
     inset: 0;
     border-radius: inherit;
     padding: 1px;
-    background: linear-gradient(
-      135deg,
-      rgba(188, 212, 230, 0.6),
-      rgba(197, 222, 221, 0.4),
-      rgba(250, 210, 225, 0.6)
-    );
-    -webkit-mask:
-      linear-gradient(#fff 0 0) content-box,
-      linear-gradient(#fff 0 0);
+    background: linear-gradient(135deg, rgba(240,101,67,0.55), rgba(240,157,81,0.40), rgba(232,233,235,0.50));
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
     -webkit-mask-composite: xor;
     mask-composite: exclude;
     pointer-events: none;
   }
 
-  /* ── Section heading gradient ────────────────────────────────────────── */
-
+  /* ── Heading gradient (coral → amber) ──────────────────────────────── */
   .heading-gradient {
-    background: linear-gradient(135deg, #5e96b0 0%, #6eb4b2 50%, #7aafc8 100%);
+    background: linear-gradient(135deg, #f06543 0%, #f09d51 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
   }
-
+  /* Dark mode version lightens slightly for legibility on charcoal */
   .dark .heading-gradient {
-    background: linear-gradient(135deg, #bcd4e6 0%, #c5dedd 50%, #fad2e1 100%);
+    background: linear-gradient(135deg, #f47a5e 0%, #f4ac5e 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
   }
-}
-
-@keyframes orbFloat {
-  0%,  100% { transform: translateY(0px) scale(1); }
-  50%        { transform: translateY(-18px) scale(1.04); }
 }

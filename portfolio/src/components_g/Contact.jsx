@@ -302,7 +302,7 @@ const Contact = () => {
                         onChange={handleChange}
                         required
                         placeholder="John Doe"
-                        className="w-full px-4 py-3 bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all text-gray-900 dark:text-white placeholder-gray-400"
+                        className="w-full px-4 py-3 bg-silver/60 dark:bg-gray-800 border border-gray-200/80 dark:border-gray-700 rounded-xl focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all text-gray-900 dark:text-white placeholder-gray-400"
                       />
                     </div>
                     <div>
@@ -316,7 +316,7 @@ const Contact = () => {
                         onChange={handleChange}
                         required
                         placeholder="john@example.com"
-                        className="w-full px-4 py-3 bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl focus:ring-2 focus:ring-secondary-500 focus:border-transparent transition-all text-gray-900 dark:text-white placeholder-gray-400"
+                        className="w-full px-4 py-3 bg-silver/60 dark:bg-gray-800 border border-gray-200/80 dark:border-gray-700 rounded-xl focus:ring-2 focus:ring-secondary-500 focus:border-transparent transition-all text-gray-900 dark:text-white placeholder-gray-400"
                       />
                     </div>
                   </div>
@@ -331,7 +331,7 @@ const Contact = () => {
                       onChange={handleChange}
                       required
                       placeholder="Project Collaboration"
-                      className="w-full px-4 py-3 bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl focus:ring-2 focus:ring-accent-500 focus:border-transparent transition-all text-gray-900 dark:text-white placeholder-gray-400"
+                      className="w-full px-4 py-3 bg-silver/60 dark:bg-gray-800 border border-gray-200/80 dark:border-gray-700 rounded-xl focus:ring-2 focus:ring-accent-500 focus:border-transparent transition-all text-gray-900 dark:text-white placeholder-gray-400"
                     />
                   </div>
                   <div>
@@ -345,7 +345,7 @@ const Contact = () => {
                       required
                       rows={6}
                       placeholder="Hi Dheeraj, I'd like to discuss..."
-                      className="w-full px-4 py-3 bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all text-gray-900 dark:text-white placeholder-gray-400 resize-none"
+                      className="w-full px-4 py-3 bg-silver/60 dark:bg-gray-800 border border-gray-200/80 dark:border-gray-700 rounded-xl focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all text-gray-900 dark:text-white placeholder-gray-400 resize-none"
                     ></textarea>
                   </div>
                   <motion.button
