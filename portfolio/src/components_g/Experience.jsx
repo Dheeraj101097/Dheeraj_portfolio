@@ -138,35 +138,35 @@ const Experience = () => {
     >
       {/* ── Fluid mesh accent blobs (sit BEHIND the glass cards) ── */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
-        {/* Primary neon mint blob — top left */}
+        {/* Primary neon mint blob — top left (vivid so frost has something to diffuse) */}
         <motion.div
-          animate={{ rotate: [0, 360], scale: [1, 1.35, 1], opacity: [0.12, 0.22, 0.12] }}
+          animate={{ rotate: [0, 360], scale: [1, 1.35, 1], opacity: [0.22, 0.38, 0.22] }}
           transition={{ duration: 32, repeat: Infinity, ease: "linear" }}
-          className="absolute -top-24 -left-24 w-[36rem] h-[36rem] rounded-full"
+          className="absolute -top-24 -left-24 w-[40rem] h-[40rem] rounded-full"
           style={{
             background: isDark
-              ? "radial-gradient(circle, #20fc8f 0%, transparent 70%)"
-              : "radial-gradient(circle, #84a19d 0%, transparent 70%)",
-            filter: "blur(90px)",
+              ? "radial-gradient(circle, #20fc8f 0%, #0d8a4d 40%, transparent 70%)"
+              : "radial-gradient(circle, #84a19d 0%, #3f5e5a 40%, transparent 70%)",
+            filter: "blur(80px)",
           }}
         />
         {/* Deep teal blob — bottom right */}
         <motion.div
-          animate={{ rotate: [360, 0], scale: [1.2, 1, 1.2], opacity: [0.1, 0.18, 0.1] }}
+          animate={{ rotate: [360, 0], scale: [1.2, 1, 1.2], opacity: [0.18, 0.30, 0.18] }}
           transition={{ duration: 28, repeat: Infinity, ease: "linear" }}
-          className="absolute -bottom-24 -right-24 w-[28rem] h-[28rem] rounded-full"
+          className="absolute -bottom-24 -right-24 w-[34rem] h-[34rem] rounded-full"
           style={{
             background: isDark
-              ? "radial-gradient(circle, #3f5e5a 0%, transparent 70%)"
-              : "radial-gradient(circle, #84a19d 0%, transparent 70%)",
-            filter: "blur(80px)",
+              ? "radial-gradient(circle, #3f5e5a 0%, #1b765c 40%, transparent 70%)"
+              : "radial-gradient(circle, #c2c7c0 0%, #84a19d 40%, transparent 70%)",
+            filter: "blur(70px)",
           }}
         />
         {/* Center ambient glow */}
         <motion.div
-          animate={{ scale: [1, 1.15, 1], opacity: [0.06, 0.12, 0.06] }}
+          animate={{ scale: [1, 1.2, 1], opacity: [0.10, 0.20, 0.10] }}
           transition={{ duration: 18, repeat: Infinity, ease: "easeInOut" }}
-          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[44rem] h-[44rem] rounded-full"
+          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[48rem] h-[48rem] rounded-full"
           style={{
             background: isDark
               ? "radial-gradient(circle, #3f5e5a 0%, transparent 65%)"

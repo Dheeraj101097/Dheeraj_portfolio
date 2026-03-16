@@ -136,24 +136,24 @@ const Projects = () => {
       {/* ── Fluid mesh blobs behind glass ── */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
         <motion.div
-          animate={{ rotate: [0, 360], scale: [1, 1.2, 1] }}
+          animate={{ rotate: [0, 360], scale: [1, 1.25, 1], opacity: [0.25, 0.42, 0.25] }}
           transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
-          className="absolute top-20 right-20 w-72 h-72 rounded-full"
+          className="absolute -top-10 right-10 w-[28rem] h-[28rem] rounded-full"
           style={{
             background: isDark
-              ? "radial-gradient(circle, rgba(32,252,143,0.12) 0%, transparent 70%)"
-              : "radial-gradient(circle, rgba(132,161,157,0.3) 0%, transparent 70%)",
-            filter: "blur(60px)",
+              ? "radial-gradient(circle, #20fc8f 0%, #0d8a4d 45%, transparent 70%)"
+              : "radial-gradient(circle, #84a19d 0%, #3f5e5a 45%, transparent 70%)",
+            filter: "blur(72px)",
           }}
         />
         <motion.div
-          animate={{ rotate: [360, 0], scale: [1.1, 1, 1.1] }}
+          animate={{ rotate: [360, 0], scale: [1.1, 1, 1.1], opacity: [0.20, 0.34, 0.20] }}
           transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
-          className="absolute bottom-20 left-20 w-96 h-96 rounded-full"
+          className="absolute bottom-10 -left-10 w-[36rem] h-[36rem] rounded-full"
           style={{
             background: isDark
-              ? "radial-gradient(circle, rgba(63,94,90,0.25) 0%, transparent 70%)"
-              : "radial-gradient(circle, rgba(132,161,157,0.25) 0%, transparent 70%)",
+              ? "radial-gradient(circle, #3f5e5a 0%, #1b765c 40%, transparent 70%)"
+              : "radial-gradient(circle, #c2c7c0 0%, #84a19d 40%, transparent 70%)",
             filter: "blur(80px)",
           }}
         />
