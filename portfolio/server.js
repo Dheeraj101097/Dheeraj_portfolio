@@ -111,6 +111,11 @@ app.use(async (req, res, next) => {
   }
 });
 
-app.listen(PORT, () => {
-  console.log(`🚀 SSR Server running on http://localhost:${PORT}`);
-});
+// Only bind a port when running locally (not on Vercel serverless)
+if (!process.env.VERCEL) {
+  app.listen(PORT, () => {
+    console.log(`🚀 SSR Server running on http://localhost:${PORT}`);
+  });
+}
+
+export default app;
