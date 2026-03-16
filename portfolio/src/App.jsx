@@ -1,28 +1,25 @@
-import React, { useState, useEffect, lazy, Suspense } from "react";
+import React, { useState, useEffect } from "react";
 import Header from "./components_g/Header";
 import Hero from "./components_g/Hero";
-
-// Lazy load components below the fold
-const Education = lazy(() => import("./components_g/Education"));
-const Skills = lazy(() => import("./components_g/Skills"));
-const Projects = lazy(() => import("./components_g/Projects"));
-const Experience = lazy(() => import("./components_g/Experience"));
-const Contact = lazy(() => import("./components_g/Contact"));
-const Footer = lazy(() => import("./components_g/Footer"));
-const Certificate = lazy(() => import("./components_g/Certificate"));
+import Education from "./components_g/Education";
+import Skills from "./components_g/Skills";
+import Projects from "./components_g/Projects";
+import Experience from "./components_g/Experience";
+import Contact from "./components_g/Contact";
+import Footer from "./components_g/Footer";
+import Certificate from "./components_g/Certificate";
 
 function App() {
-  // Initialize state lazily to read localStorage BEFORE first render
-  const [darkMode, setDarkMode] = useState(() => {
+  // Default to dark mode; read localStorage only on client after mount
+  const [darkMode, setDarkMode] = useState(true);
+
+  useEffect(() => {
     const savedMode = localStorage.getItem("darkMode");
     if (savedMode !== null) {
-      return JSON.parse(savedMode);
+      setDarkMode(JSON.parse(savedMode));
     }
-    // Default to light mode
-    return false;
-  });
+  }, []);
 
-  // Apply dark mode class to HTML element whenever state changes
   useEffect(() => {
     localStorage.setItem("darkMode", JSON.stringify(darkMode));
     if (darkMode) {
@@ -47,27 +44,25 @@ function App() {
         <section id="hero">
           <Hero />
         </section>
-        <Suspense fallback={<div className="h-screen flex items-center justify-center"><div className="w-8 h-8 border-4 border-primary-500 border-t-transparent rounded-full animate-spin"></div></div>}>
-          <section id="experience">
-            <Experience />
-          </section>
-          <section id="skills">
-            <Skills />
-          </section>
-          <section id="projects">
-            <Projects />
-          </section>
-          <section id="certificate">
-            <Certificate />
-          </section>
-          <section id="education">
-            <Education />
-          </section>
-          <section id="contact">
-            <Contact />
-          </section>
-          <Footer />
-        </Suspense>
+        <section id="experience">
+          <Experience />
+        </section>
+        <section id="skills">
+          <Skills />
+        </section>
+        <section id="projects">
+          <Projects />
+        </section>
+        <section id="certificate">
+          <Certificate />
+        </section>
+        <section id="education">
+          <Education />
+        </section>
+        <section id="contact">
+          <Contact />
+        </section>
+        <Footer />
       </main>
     </div>
   );

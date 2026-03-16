@@ -367,7 +367,7 @@ const Hero = () => {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="text-base sm:text-lg md:text-xl text-gray-300 mb-8 sm:mb-12 max-w-3xl mx-auto leading-relaxed px-4"
+            className="text-base sm:text-lg md:text-xl text-primary-400 mb-8 sm:mb-12 max-w-3xl mx-auto leading-relaxed px-4"
           >
             <motion.span
               animate={{ opacity: [1, 0.7, 1] }}

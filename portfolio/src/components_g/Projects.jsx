@@ -171,7 +171,7 @@ const Projects = () => {
           <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-primary-600 via-secondary-500 to-accent-500 bg-clip-text text-transparent animate-gradient-x">
             Featured Projects
           </h2>
-          <p className="text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
+          <p className="text-lg text-gray-600 dark:text-primary-400 max-w-2xl mx-auto">
             A showcase of my recent work spanning web development, IoT systems,
             and embedded electronics.
           </p>

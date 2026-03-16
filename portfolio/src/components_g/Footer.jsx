@@ -74,7 +74,7 @@ const Footer = () => {
             <h3 className="text-2xl font-bold bg-gradient-to-r from-primary-400 via-secondary-400 to-accent-400 bg-clip-text text-transparent mb-4 animate-gradient-x">
               Dheeraj Patnaik
             </h3>
-            <p className="text-gray-400 max-w-md mx-auto">
+            <p className="text-primary-400 max-w-md mx-auto">
               Building the future through innovative electronics and software
               solutions.
             </p>
