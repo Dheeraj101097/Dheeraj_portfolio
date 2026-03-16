@@ -154,9 +154,11 @@ export default {
         //   950: "#15231b", // Even Darker for contrast
         // },
         gray: {
-          850: "#171717", // Neutral dark gray for cards
-          900: "#0a0a0a", // Deep neutral black
-          950: "#030712", // True deep black background
+          700: "#3d3d3c", // Hover states
+          800: "#2e2e2d", // Inputs, skill chips
+          850: "#282827", // Sub-elements
+          900: "#232322", // Cards
+          950: "#0e0e0e", // Main background
         },
       },
 
